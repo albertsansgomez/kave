@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KAVE
 
-## Getting Started
+Prueba técnica para el proceso de selección de **Kavehome**.
 
-First, run the development server:
+Aplicación web desarrollada con **Next.js, React, TypeScript y Tailwind CSS**, orientada a la personalización de espacios mediante generación de imágenes.
+
+## 🛠️ Tecnologías
+
+* **Next.js**
+* **React**
+* **TypeScript**
+* **Tailwind CSS**
+* **Vercel** para el despliegue
+
+## 🚀 Instalación
+
+Clonar el repositorio:
+
+```bash
+git clone https://github.com/albertsansgomez/kave.git
+cd kave
+```
+
+Instalar las dependencias:
+
+```bash
+npm install
+```
+
+## ▶️ Ejecutar el proyecto
+
+Iniciar el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+La aplicación estará disponible en:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📜 Scripts
 
-## Learn More
+| Comando          | Descripción                        |
+| ---------------- | ---------------------------------- |
+| `npm run dev`    | Inicia el servidor de desarrollo   |
+| `npm run build`  | Genera la build de producción      |
+| `npm run start`  | Inicia la aplicación en producción |
+| `npm run lint`   | Ejecuta ESLint                     |
+| `npm run format` | Formatea el código                 |
 
-To learn more about Next.js, take a look at the following resources:
+## 🧩 Arquitectura
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+El proyecto utiliza **Next.js con App Router** y está desarrollado íntegramente con TypeScript.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+La interfaz se ha estructurado mediante componentes reutilizables, separando la lógica de presentación de la lógica relacionada con la generación de imágenes.
 
-## Deploy on Vercel
+## 📱 Responsive
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+La interfaz está diseñada para adaptarse a diferentes tamaños de pantalla, con especial atención a la experiencia de uso en escritorio y dispositivos móviles.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🌐 Despliegue
+
+El proyecto está preparado para su despliegue en **Vercel**.
