@@ -1,4 +1,7 @@
+
 import Link from 'next/link';
+
+import { Product } from '@/components/ui/Product';
 
 interface PageProps {
   params: Promise<{
@@ -11,11 +14,9 @@ export default async function CategoryPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="bg-amber-500 pt-12 pr-20 pb-8 pl-20">
-        <h1 className="font-normal text-[46px] leading-[46px]">
-          Categoria: Mesas
-        </h1>
-        <p className="font-normal text-[15px] leading-5 w-[644px] mt-3">
+      <div className="bg-amber-500 pt-3 pr-6 pb-6 pl-6 lg:pt-12 lg:pr-20 lg:pb-8 lg:pl-20">
+        <h1 className="font-normal text-[46px] leading-[46px]">Mesas</h1>
+        <p className="font-normal text-[15px] leading-5 lg:w-[644px] mt-3">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
           minim veniam, quis nostrud exercitation ullamco laboris nisi ut
@@ -25,6 +26,12 @@ export default async function CategoryPage({ params }: PageProps) {
           culpa qui officia deserunt mollit anim id est laborum.
         </p>
       </div>
+
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-[60px]">
+        {Array.from({ length: 20 }, (_, index) => (
+          <Product key={index} />
+        ))}
+      </section>
 
       <ul>
         <li>
