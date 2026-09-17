@@ -6,11 +6,11 @@ Aplicación web desarrollada con **Next.js, React, TypeScript y Tailwind CSS**, 
 
 ## 🛠️ Tecnologías
 
-* **Next.js**
-* **React**
-* **TypeScript**
-* **Tailwind CSS**
-* **Vercel** para el despliegue
+- **Next.js**
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **Vercel** para el despliegue
 
 ## 🚀 Instalación
 
