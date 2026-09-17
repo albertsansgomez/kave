@@ -4,11 +4,11 @@ import { useRouter } from 'next/navigation';
 
 import Heart from '@/components/icons/Heart.svg';
 
-interface HeartLinkProps {
+interface FavoriteButtonProps {
   href: string;
 }
 
-export function HeartLink({ href }: HeartLinkProps) {
+export function FavoriteButton({ href }: FavoriteButtonProps) {
   const router = useRouter();
 
   return (
