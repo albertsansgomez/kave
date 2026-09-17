@@ -20,7 +20,7 @@ export function Header() {
         </nav>
         <div className="flex items-center gap-4">
           <button className="bg-gray-200 block h-[20px] w-[20px]" />
-          <HeartLink href="/" />
+          <HeartLink href="/favorites" />
           <button className="bg-gray-200 block h-[20px] w-[20px]" />
         </div>
       </div>
