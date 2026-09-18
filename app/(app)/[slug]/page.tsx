@@ -32,7 +32,8 @@ export default async function CategoryPage({ params }: PageProps) {
           <Product key={index} />
         ))}
       </section>
-      <Pagination currentPage={2} totalPages={2} />
+
+      <Pagination className='mt-[60px]' currentPage={7} totalPages={7} />
 
       <ul>
         <li>
