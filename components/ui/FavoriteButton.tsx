@@ -8,7 +8,7 @@ interface FavoriteButtonProps {
   href: string;
 }
 
-export function FavoriteButton({ href }: FavoriteButtonProps) {
+export default function FavoriteButton({ href }: FavoriteButtonProps) {
   const router = useRouter();
 
   return (

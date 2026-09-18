@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-export function Product() {
+export default function Product() {
   return (
     <article className="bg-green-600">
       <div className="relative aspect-[4/5] w-full">
