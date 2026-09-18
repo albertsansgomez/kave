@@ -18,7 +18,7 @@ export default function PaginationLink({
   enabled = true,
 }: PaginationLinkProps) {
   const className = cn({
-    'flex size-10 items-center justify-center font-normal': true,
+    'flex size-10 items-center justify-center text-[14px]': true,
     'after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:bg-black':
       isCurrent,
     'opacity-30': !enabled,
