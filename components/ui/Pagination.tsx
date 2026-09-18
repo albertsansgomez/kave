@@ -1,4 +1,7 @@
+import PaginationButton from './PaginationButton';
 import PaginationLink from './PaginationLink';
+
+import PaginationEllipsis from '@/components/icons/PaginationEllipsis.svg';
 
 /**
  * Devuelve las páginas que se mostrarán,
@@ -29,14 +32,14 @@ interface PaginationProps {
 
 /**
  * Se muestran tres páginas consecutivas y
- * elipsis cuando existen páginas ocultas 
+ * elipsis cuando existen páginas ocultas
  * manteniendo la página actual centrada
- * cuando sea posible cubriendo así los 
+ * cuando sea posible cubriendo así los
  * diferentes escenarios.
- * 
- * Se define esta lógica de paginación al no 
- * estar completamente especificado su comportamiento 
- * en el diseño. 
+ *
+ * Se define esta lógica de paginación al no
+ * estar completamente especificado su comportamiento
+ * en el diseño.
  */
 export default function Pagination({
   currentPage,
@@ -52,11 +55,11 @@ export default function Pagination({
 
   return (
     <nav aria-label="Paginación">
-      <ul className="flex items-center justify-center gap-8">
+      <ul className="flex items-center justify-center h-[88px]">
         <li>
-          <PaginationLink
+          <PaginationButton
             href={`?page=${currentPage - 1}`}
-            content="‹"
+            direction="left"
             ariaLabel="Página anterior"
             enabled={hasPrevious}
           />
@@ -64,7 +67,12 @@ export default function Pagination({
 
         {showPreviousEllipsis && (
           <li>
-            <span aria-hidden="true">...</span>
+            <span
+              aria-hidden="true"
+              className="flex size-10 items-center justify-center"
+            >
+              <PaginationEllipsis className="fill-[#6C6C66] w-[18px] h-1" />
+            </span>
           </li>
         )}
 
@@ -84,14 +92,19 @@ export default function Pagination({
 
         {showNextEllipsis && (
           <li>
-            <span aria-hidden="true">...</span>
+            <span
+              aria-hidden="true"
+              className="flex size-10 items-center justify-center"
+            >
+              <PaginationEllipsis className="fill-[#6C6C66] w-[18px] h-1" />
+            </span>
           </li>
         )}
 
         <li>
-          <PaginationLink
+          <PaginationButton
             href={`?page=${currentPage + 1}`}
-            content="›"
+            direction="right"
             ariaLabel="Página siguiente"
             enabled={hasNext}
           />
