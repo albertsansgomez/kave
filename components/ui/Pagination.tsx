@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import PaginationLink from './PaginationLink';
 
 /**
  * Devuelve las páginas que se mostrarán,
@@ -27,6 +27,17 @@ interface PaginationProps {
   totalPages: number;
 }
 
+/**
+ * Se muestran tres páginas consecutivas y
+ * elipsis cuando existen páginas ocultas 
+ * manteniendo la página actual centrada
+ * cuando sea posible cubriendo así los 
+ * diferentes escenarios.
+ * 
+ * Se define esta lógica de paginación al no 
+ * estar completamente especificado su comportamiento 
+ * en el diseño. 
+ */
 export default function Pagination({
   currentPage,
   totalPages,
@@ -36,29 +47,19 @@ export default function Pagination({
   const showPreviousEllipsis = pages[0] > 1;
   const showNextEllipsis = pages[pages.length - 1] < totalPages;
 
-  const hasPrevious = currentPage > 1;
-  const hasNext = currentPage < totalPages;
+  const hasPrevious = currentPage > 1 && totalPages > 3;
+  const hasNext = currentPage < totalPages && totalPages > 3;
 
   return (
     <nav aria-label="Paginación">
       <ul className="flex items-center justify-center gap-8">
         <li>
-          {hasPrevious ? (
-            <Link
-              href={`?page=${currentPage - 1}`}
-              aria-label="Página anterior"
-              className="flex h-10 w-10 items-center justify-center text-[20px]"
-            >
-              ‹
-            </Link>
-          ) : (
-            <span
-              aria-hidden="true"
-              className="flex h-10 w-10 items-center justify-center text-[20px] opacity-30"
-            >
-              ‹
-            </span>
-          )}
+          <PaginationLink
+            href={`?page=${currentPage - 1}`}
+            content="‹"
+            ariaLabel="Página anterior"
+            enabled={hasPrevious}
+          />
         </li>
 
         {showPreviousEllipsis && (
@@ -72,17 +73,11 @@ export default function Pagination({
 
           return (
             <li key={page}>
-              <Link
+              <PaginationLink
                 href={`?page=${page}`}
-                aria-current={isCurrent ? 'page' : undefined}
-                className={`relative flex h-10 w-10 items-center justify-center text-[15px] leading-5 ${
-                  isCurrent
-                    ? 'after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-full after:bg-black'
-                    : ''
-                }`}
-              >
-                {page}
-              </Link>
+                content={page}
+                ariaLabel={isCurrent ? 'page' : undefined}
+              />
             </li>
           );
         })}
@@ -94,22 +89,12 @@ export default function Pagination({
         )}
 
         <li>
-          {hasNext ? (
-            <Link
-              href={`?page=${currentPage + 1}`}
-              aria-label="Página siguiente"
-              className="flex h-10 w-10 items-center justify-center text-[20px]"
-            >
-              ›
-            </Link>
-          ) : (
-            <span
-              aria-hidden="true"
-              className="flex h-10 w-10 items-center justify-center text-[20px] opacity-30"
-            >
-              ›
-            </span>
-          )}
+          <PaginationLink
+            href={`?page=${currentPage + 1}`}
+            content="›"
+            ariaLabel="Página siguiente"
+            enabled={hasNext}
+          />
         </li>
       </ul>
     </nav>
