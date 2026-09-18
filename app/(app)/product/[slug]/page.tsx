@@ -1,5 +1,6 @@
 import Image from 'next/image';
 
+import AddCard from '@/components/ui/AddCard';
 import ProductBenefits from '@/components/ui/ProductBenefits';
 
 interface PageProps {
@@ -68,6 +69,8 @@ export default async function ProductPage({ params }: PageProps) {
               Más información
             </a>
           </p>
+
+          <AddCard />
         </section>
       </section>
       <ProductBenefits className="mt-8" />
