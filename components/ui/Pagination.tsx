@@ -86,6 +86,7 @@ export default function Pagination({
               <PaginationLink
                 href={`?page=${page}`}
                 content={page}
+                isCurrent={isCurrent}
                 ariaLabel={isCurrent ? 'page' : undefined}
               />
             </li>
