@@ -5,7 +5,7 @@ import LogoKaveBig from '@/components/elements/LogoKaveBig.svg';
 
 export default function Header() {
   return (
-    <header className="w-full bg-red-500">
+    <header className="w-full">
       <div className="flex h-16 items-center justify-between pt-2 pr-4 pb-2 pl-6">
         <Link href="/">
           <LogoKaveBig className="h-[16px] lg:h-[20px] w-auto" />
