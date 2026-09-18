@@ -26,7 +26,7 @@ const getPages = (currentPage: number, totalPages: number) => {
 };
 
 interface PaginationProps {
-  className?: string,
+  className?: string;
   currentPage: number;
   totalPages: number;
 }

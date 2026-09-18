@@ -27,13 +27,13 @@ export default async function CategoryPage({ params }: PageProps) {
         </p>
       </div>
 
-      <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-[60px]">
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
         {Array.from({ length: 4 }, (_, index) => (
           <Product key={index} />
         ))}
       </section>
 
-      <Pagination className='mt-[60px]' currentPage={7} totalPages={7} />
+      <Pagination className="mt-[60px]" currentPage={7} totalPages={7} />
 
       <ul>
         <li>
