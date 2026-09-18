@@ -26,6 +26,7 @@ const getPages = (currentPage: number, totalPages: number) => {
 };
 
 interface PaginationProps {
+  className?: string,
   currentPage: number;
   totalPages: number;
 }
@@ -42,6 +43,7 @@ interface PaginationProps {
  * en el diseño.
  */
 export default function Pagination({
+  className,
   currentPage,
   totalPages,
 }: PaginationProps) {
@@ -54,7 +56,7 @@ export default function Pagination({
   const hasNext = currentPage < totalPages && totalPages > 3;
 
   return (
-    <nav aria-label="Paginación">
+    <nav className={className} aria-label="Paginación">
       <ul className="flex items-center justify-center h-[88px]">
         <li>
           <PaginationButton
