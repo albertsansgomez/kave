@@ -33,23 +33,11 @@ export default async function CategoryPage({ params }: PageProps) {
         ))}
       </section>
 
-      <Pagination className="mt-[60px]" currentPage={7} totalPages={7} />
-
-      <ul>
-        <li>
-          <Link href="/product/litto-table-made-from-oak-veneer/">Litto</Link>
-        </li>
-        <li>
-          <Link href="/product/tarsel-coffee-table-in-tempered-glass-with-walnut-veneer-tray-with-brushed-stainless-steel-structure">
-            Tarsel
-          </Link>
-        </li>
-        <li>
-          <Link href="/product/dolven-coffee-table-in-brown-glass-and-brushed-steel">
-            Dolven
-          </Link>
-        </li>
-      </ul>
+      <Pagination
+        className="mt-[60px] mb-[56px]"
+        currentPage={7}
+        totalPages={7}
+      />
     </>
   );
 }
