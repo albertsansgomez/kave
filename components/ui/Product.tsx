@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import WishlistLinkButton from './WishlistLinkButton';
+
 export default function Product() {
   return (
     <Link href="/product/tarsel-coffee-table-in-tempered-glass-with-walnut-veneer-tray-with-brushed-stainless-steel-structure">
@@ -11,6 +13,10 @@ export default function Product() {
             fill
             alt="Lorem ipsum dolor sit amet"
             className="object-cover"
+          />
+          <WishlistLinkButton
+            className="absolute top-3 right-3 z-10"
+            isActive={true}
           />
         </div>
         <div className="flex flex-col gap-[6px] pt-2 pr-2 pl-2">
