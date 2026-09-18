@@ -2,13 +2,13 @@ import Link from 'next/link';
 
 import Heart from '@/components/icons/Heart.svg';
 
-interface FavoriteLinkProps {
+interface WishlistLinkProps {
   href: string;
 }
 
-export default function FavoriteLink({ href }: FavoriteLinkProps) {
+export default function WishlistLink({ href }: WishlistLinkProps) {
   return (
-    <Link href={href} aria-label="Favoritos">
+    <Link href={href} aria-label="Lista de deseados">
       <Heart className="h-6 w-6 cursor-pointer stroke-black hover:stroke-gray-600" />
     </Link>
   );
