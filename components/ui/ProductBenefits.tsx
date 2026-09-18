@@ -12,10 +12,19 @@ export default function ProductBenefits({ className }: ProductBenefitsProps) {
       <h2 id="benefits-title" className="sr-only">
         Ventajas de compra
       </h2>
-      <ul className="grid grid-cols-3 h-[143px]">
+      <ul className="grid lg:grid-cols-3 gap-8 pt-8 pr-6 pb-8 pl-6 lg:h-[143px]">
         <li className="flex flex-col justify-center items-center">
           <h3 className="font-[670] text-[16px] leading-[24px]">
             Devoluciones gratuitas
+          </h3>
+          <a href="/devoluciones" className="underline">
+            Ver condiciones
+          </a>
+        </li>
+
+        <li className="flex flex-col justify-center items-center lg:hidden">
+          <h3 className="font-[670] text-[16px] leading-[24px]">
+            Garantía 10 años
           </h3>
           <a href="/devoluciones" className="underline">
             Ver condiciones

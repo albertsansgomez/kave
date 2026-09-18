@@ -1,5 +1,6 @@
 import Product from '@/components/ui/Product';
 import Pagination from '@/components/ui/Pagination';
+import PageIntro from '@/components/ui/PageIntro';
 
 interface PageProps {
   params: Promise<{
@@ -12,18 +13,10 @@ export default async function CategoryPage({ params }: PageProps) {
 
   return (
     <>
-      <div className="bg-amber-500 pt-3 pr-6 pb-6 pl-6 lg:pt-12 lg:pr-20 lg:pb-8 lg:pl-20">
-        <h1 className="font-normal text-[46px] leading-[46px]">Mesas</h1>
-        <p className="font-normal text-[15px] leading-5 lg:w-[644px] mt-3">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat. Duis aute irure dolor in
-          reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-          pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-          culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-      </div>
+      <PageIntro
+        title="Mesas"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      />
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
         {Array.from({ length: 4 }, (_, index) => (

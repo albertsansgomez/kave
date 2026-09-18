@@ -1,5 +1,7 @@
 import Image from 'next/image';
 
+import Shipping from '@/components/icons/Shipping.svg';
+import AddCard from '@/components/ui/AddCard';
 import ProductBenefits from '@/components/ui/ProductBenefits';
 
 interface PageProps {
@@ -18,7 +20,7 @@ export default async function ProductPage({ params }: PageProps) {
         className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_630px]"
       >
         <section
-          className="bg-amber-300 min-w-0"
+          className="min-w-0"
           aria-label="Galería de imágenes del producto"
         >
           <Image
@@ -48,7 +50,7 @@ export default async function ProductPage({ params }: PageProps) {
             ))}
           </ul>
         </section>
-        <section className="bg-green-700 p-6 lg:p-12">
+        <section className="p-6 lg:p-12">
           <h1
             id="product-title"
             className="font-normal text-[46px] leading-[46px]"
@@ -62,12 +64,20 @@ export default async function ProductPage({ params }: PageProps) {
           <p className="font-normal font-[670] text-[27px] leading-[27px] mt-4">
             399 €
           </p>
-          <p className="font-normal text-[12px] leading-[18px]">
+          <p className="mt-1 font-normal text-[12px] leading-[18px]">
             Fracciona tu pago en cómodas cuotas.{' '}
             <a href="#" className="underline">
               Más información
             </a>
           </p>
+          <AddCard className="mt-6 lg:mt-24" />
+          <div className="mt-4 flex items-start gap-2 text-[12px] font-normal text-[#1A1A14]">
+            <Shipping className="stroke-[#1A1A14] size-5 shrink-0 " />
+            <p className="leading-5">
+              Compra ahora y recíbelo aproximadamente entre el <b>28/08</b> y el{' '}
+              <b>04/09</b>.
+            </p>
+          </div>
         </section>
       </section>
       <ProductBenefits className="mt-8" />
