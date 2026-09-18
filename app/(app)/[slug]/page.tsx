@@ -1,7 +1,7 @@
-
 import Link from 'next/link';
 
-import { Product } from '@/components/ui/Product';
+import Product from '@/components/ui/Product';
+import Pagination from '@/components/ui/Pagination';
 
 interface PageProps {
   params: Promise<{
@@ -28,10 +28,11 @@ export default async function CategoryPage({ params }: PageProps) {
       </div>
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-2 gap-y-[60px]">
-        {Array.from({ length: 20 }, (_, index) => (
+        {Array.from({ length: 4 }, (_, index) => (
           <Product key={index} />
         ))}
       </section>
+      <Pagination currentPage={2} totalPages={2} />
 
       <ul>
         <li>
