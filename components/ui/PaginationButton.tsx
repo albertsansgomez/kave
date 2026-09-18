@@ -23,7 +23,7 @@ export default function PaginationButton({
   });
 
   const classNameIcon = cn({
-    'stroke-black h-5 w-5': true,
+    'stroke-black size-5': true,
     'rotate-180': direction === 'right',
     'hover:stroke-gray-400': enabled,
   });
