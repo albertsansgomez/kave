@@ -1,5 +1,3 @@
-import Link from 'next/link';
-
 import Product from '@/components/ui/Product';
 import Pagination from '@/components/ui/Pagination';
 
@@ -35,7 +33,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
       <Pagination
         className="mt-[60px] mb-[56px]"
-        currentPage={7}
+        currentPage={1}
         totalPages={7}
       />
     </>
