@@ -1,7 +1,7 @@
 import PaginationButton from './PaginationButton';
 import PaginationLink from './PaginationLink';
 
-import PaginationEllipsis from '@/components/icons/PaginationEllipsis.svg';
+import Ellipsis from '@/components/icons/Ellipsis.svg';
 
 /**
  * Devuelve las páginas que se mostrarán,
@@ -71,7 +71,7 @@ export default function Pagination({
               aria-hidden="true"
               className="flex size-10 items-center justify-center"
             >
-              <PaginationEllipsis className="fill-[#6C6C66] w-[18px] h-1" />
+              <Ellipsis className="fill-[#6C6C66] w-[18px] h-1" />
             </span>
           </li>
         )}
@@ -96,7 +96,7 @@ export default function Pagination({
               aria-hidden="true"
               className="flex size-10 items-center justify-center"
             >
-              <PaginationEllipsis className="fill-[#6C6C66] w-[18px] h-1" />
+              <Ellipsis className="fill-[#6C6C66] w-[18px] h-1" />
             </span>
           </li>
         )}

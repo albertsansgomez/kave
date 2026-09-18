@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import PaginationLeft from '@/components/icons/PaginationLeft.svg';
+import Arrow from '@/components/icons/Arrow.svg';
 
 import { cn } from '@/utils/cn';
 
@@ -30,11 +30,11 @@ export default function PaginationButton({
 
   return enabled ? (
     <Link href={href} aria-label={ariaLabel} className={className}>
-      <PaginationLeft className={classNameIcon} />
+      <Arrow className={classNameIcon} />
     </Link>
   ) : (
     <span aria-hidden="true" className={className}>
-      <PaginationLeft className={classNameIcon} />
+      <Arrow className={classNameIcon} />
     </span>
   );
 }
