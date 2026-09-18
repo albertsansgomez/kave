@@ -18,7 +18,7 @@ export default async function ProductPage({ params }: PageProps) {
         className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_630px]"
       >
         <section
-          className="bg-amber-300 min-w-0"
+          className="min-w-0"
           aria-label="Galería de imágenes del producto"
         >
           <Image
@@ -48,7 +48,7 @@ export default async function ProductPage({ params }: PageProps) {
             ))}
           </ul>
         </section>
-        <section className="bg-green-700 p-6 lg:p-12">
+        <section className="p-6 lg:p-12">
           <h1
             id="product-title"
             className="font-normal text-[46px] leading-[46px]"

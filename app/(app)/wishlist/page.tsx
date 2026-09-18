@@ -5,7 +5,10 @@ import PageIntro from '@/components/ui/PageIntro';
 export default function Wishlist() {
   return (
     <>
-      <PageIntro title="Wishlist" description="Aquí vienen las piezas que te gustan." />
+      <PageIntro
+        title="Wishlist"
+        description="Aquí vienen las piezas que te gustan."
+      />
 
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
         {Array.from({ length: 4 }, (_, index) => (
