@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import FavoriteButton from '@/components/ui/FavoriteButton';
+import FavoriteLink from '@/components/ui/FavoriteLink';
 import LogoKaveBig from '@/components/elements/LogoKaveBig.svg';
 
 export default function Header() {
@@ -20,7 +20,7 @@ export default function Header() {
         </nav>
         <div className="flex items-center gap-4">
           <button className="bg-gray-200 block h-[20px] w-[20px]" />
-          <FavoriteButton href="/favorites" />
+          <FavoriteLink href="/favorites" />
           <button className="bg-gray-200 block h-[20px] w-[20px]" />
         </div>
       </div>
