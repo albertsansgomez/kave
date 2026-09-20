@@ -18,7 +18,7 @@ interface PageProps {
 }
 
 /**
- * Generación de metadatos para la página 
+ * Generación de metadatos para la página
  * de categoría.
  */
 export async function generateMetadata({
@@ -42,10 +42,7 @@ export async function generateMetadata({
       languages: Object.fromEntries(
         seo.alternates
           .filter((alternate) => alternate.hreflang)
-          .map((alternate) => [
-            alternate.hreflang,
-            alternate.href,
-          ]),
+          .map((alternate) => [alternate.hreflang, alternate.href]),
       ),
     },
     robots: {
@@ -68,18 +65,15 @@ export default async function CategoryPage({
   const { page } = await searchParams;
   const currentPage = Number(page) || 1;
 
-
   let category: Category | null = null;
   let hasError = false;
 
   try {
     category = await getCategory({ slug });
-
   } catch (error) {
     console.error('Failed to fetch products:', error);
     hasError = true;
   }
-
 
   if (hasError || !category) {
     return (
@@ -93,10 +87,7 @@ export default async function CategoryPage({
 
   return (
     <>
-      <PageIntro
-        title={name}
-        description={description}
-      />
+      <PageIntro title={name} description={description} />
       <Suspense fallback={<>Loading CategoryHome</>}>
         <ProductList currentPage={currentPage} />
       </Suspense>
