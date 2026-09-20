@@ -1,7 +1,9 @@
 import type { Categories } from '@/types/categories';
 import type { Response } from '@/types/response';
 
-const PAGE_SIZE = 20;
+import { CATEGORIES_ENDPOINT } from '../api/categories';
+
+const PAGE_SIZE = 8;
 
 const categories: Categories[] = [
   {
@@ -787,24 +789,10 @@ const categories: Categories[] = [
   },
 ];
 
-function getPage(url: string): number {
-  return Number(new URL(url).searchParams.get('page') ?? 1);
-}
-
-function getPageUrl(url: string, page: number): string {
-  const parsedUrl = new URL(url);
-
-  parsedUrl.searchParams.set('page', String(page));
-
-  return parsedUrl.toString();
-}
-
 export async function getCategoriesMock(
-  url: string,
+  page: number,
 ): Promise<Response<Categories>> {
-  await new Promise((resolve) => setTimeout(resolve, 3000));
-
-  const page = getPage(url);
+  await new Promise((resolve) => setTimeout(resolve, 300));
 
   const start = (page - 1) * PAGE_SIZE;
   const end = start + PAGE_SIZE;
@@ -814,8 +802,8 @@ export async function getCategoriesMock(
 
   return {
     count: categories.length,
-    next: page < totalPages ? getPageUrl(url, page + 1) : null,
-    previous: page > 1 ? getPageUrl(url, page - 1) : null,
+    next: page < totalPages ? `${CATEGORIES_ENDPOINT}?page=${page + 1}` : null,
+    previous: page > 1 ? `${CATEGORIES_ENDPOINT}?page=${page - 1}` : null,
     results,
   };
 }

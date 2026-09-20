@@ -1,17 +1,25 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import type { Product } from '@/types/product';
+
 import WishlistLinkButton from './WishlistLinkButton';
 
-export default function Product() {
+interface ProductProps {
+  product: Product;
+}
+
+export default function Product({ product }: ProductProps) {
+  const { title, description, price } = product;
+
   return (
     <Link href="/product/tarsel-coffee-table-in-tempered-glass-with-walnut-veneer-tray-with-brushed-stainless-steel-structure">
       <article>
         <div className="relative aspect-[4/5] w-full">
           <Image
-            src="https://picsum.photos/375/300"
+            src={product?.mainImage?.url ?? '/images/no-image.png'}
             fill
-            alt="Lorem ipsum dolor sit amet"
+            alt={description}
             className="object-cover"
           />
           <WishlistLinkButton
@@ -20,12 +28,11 @@ export default function Product() {
           />
         </div>
         <div className="flex flex-col gap-[6px] pt-2 pr-2 pl-2">
-          <h3 className="text-[14px] font-semibold leading-5">Artis</h3>
-          <p className="font-normal text-[12px] leading-[18px]">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+          <h3 className="text-[14px] font-semibold leading-5">{title}</h3>
+          <p className="font-normal text-[12px] leading-[18px] line-clamp-2 lg:line-clamp-1">
+            {description}
           </p>
-          <p className="font-[670] text-[14px] leading-[20px]">399 €</p>
+          <p className="font-[670] text-[14px] leading-[20px]">{price} €</p>
         </div>
       </article>
     </Link>

@@ -22,7 +22,7 @@ export default async function CarouselHome() {
   let hasError = false;
 
   try {
-    const response = await getCategories();
+    const response = await getCategories({ page: 1 });
     categories = response.results.map(mapCategoryToCarousel);
   } catch (error) {
     console.error('Failed to fetch categories:', error);
