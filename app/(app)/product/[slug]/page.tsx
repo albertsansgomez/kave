@@ -12,6 +12,7 @@ interface PageProps {
 
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
+  const sku = slug.split('-').pop();
 
   return (
     <>
@@ -55,7 +56,7 @@ export default async function ProductPage({ params }: PageProps) {
             id="product-title"
             className="font-normal text-[46px] leading-[46px]"
           >
-            Artis
+            Artis {sku}
           </h1>
           <p className="font-normal text-[13px] leading-5">
             Mesa extensible redonda Artis de madera maciza y chapa de roble FSC
