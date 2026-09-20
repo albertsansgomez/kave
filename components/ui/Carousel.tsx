@@ -4,6 +4,10 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { cn } from '@/utils/cn';
+
+import Arrow from '@/components/icons/Arrow.svg';
+
 export interface ProductCategory {
   name: string;
   image: string;
@@ -12,14 +16,40 @@ export interface ProductCategory {
 }
 
 interface CarouselProps {
+  className?: string;
   categories: ProductCategory[];
 }
 
-export default function Carousel({ categories }: CarouselProps) {
+/**
+ * Como el diseño no especificaba su
+ * funcionamiento, se ha definido una
+ * navegación horizontal intuitiva:
+ *
+ * - Avance de una tarjeta por cada clic en
+ *   las flechas.
+ * - Soporte de scroll/swipe nativo en
+ *   dispositivos táctiles.
+ * - Las flechas se deshabilitan al llegar
+ *   al inicio o al final.
+ * - La distancia de desplazamiento se adapta
+ *   al tamaño responsive de las tarjetas.
+ *
+ * Se utilizan APIs nativas del navegador
+ * para evitar una dependencia externa,
+ * ya que el comportamiento requerido es
+ * sencillo.
+ */
+export default function Carousel({ categories, className }: CarouselProps) {
   const carouselRef = useRef<HTMLUListElement>(null);
 
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+
+  const carouselClassName = cn(
+    className,
+    'fw-full overflow-hidden bg-white',
+  );
+
 
   /**
    * Actualiza el estado de las flechas en
@@ -89,9 +119,9 @@ export default function Carousel({ categories }: CarouselProps) {
   }, []);
 
   return (
-    <section className="w-full overflow-hidden bg-white">
+    <section className={carouselClassName}>
       <div className="flex items-center justify-between px-6 lg:px-17">
-        <h2>Pieces designed for everyday life</h2>
+        <h2 className="font-kave-heading text-[20px] tracking-[-5%] pt-5 pb-5">Todo para tu hogar</h2>
 
         <div className="flex gap-6">
           <button
@@ -101,7 +131,7 @@ export default function Carousel({ categories }: CarouselProps) {
             onClick={() => onClick('left')}
             className="disabled:opacity-30"
           >
-            ←
+            <Arrow className="stroke-black size-5" />
           </button>
 
           <button
@@ -111,14 +141,14 @@ export default function Carousel({ categories }: CarouselProps) {
             onClick={() => onClick('right')}
             className="disabled:opacity-30"
           >
-            →
+            <Arrow className="stroke-black size-5 rotate-180" />
           </button>
         </div>
       </div>
 
       <ul
         ref={carouselRef}
-        className="scrollbar-none flex gap-2 overflow-x-auto px-6 lg:px-17"
+        className="scrollbar-none flex gap-2 overflow-x-auto px-6 lg:px-17 mt-2"
       >
         {categories.map((category) => (
           <li
