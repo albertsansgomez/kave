@@ -2,6 +2,7 @@ import Link from 'next/link';
 
 import Hero from '@/components/ui/Hero';
 import Stories, { type StoryItem } from '@/components/ui/Stories';
+import Carousel from '@/components/ui/Carousel';
 
 /**
  * Listado de historias destacadas.
@@ -34,6 +35,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Carousel />
       <Stories stories={stories} />
       <section>
         <ul>
