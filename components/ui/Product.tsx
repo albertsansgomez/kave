@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import type { Products } from '@/types/products';
+import type { FavoriteProduct } from '@/types/favorites';
 
 import WishlistLinkButton from './WishlistLinkButton';
 
@@ -11,6 +12,14 @@ interface ProductProps {
 
 export default function Product({ product }: ProductProps) {
   const { title, description, price, slug, sku } = product;
+
+  const favoriteProduct: FavoriteProduct = {
+    sku,
+    title,
+    slug,
+    price,
+    mainImage: product.mainImage,
+  };
 
   return (
     <Link href={`/product/${slug}-${sku}`}>
@@ -24,7 +33,7 @@ export default function Product({ product }: ProductProps) {
           />
           <WishlistLinkButton
             className="absolute top-3 right-3 z-10"
-            isActive={true}
+            product={favoriteProduct}
           />
         </div>
         <div className="flex flex-col gap-[6px] pt-2 pr-2 pl-2">
