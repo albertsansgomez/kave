@@ -1,4 +1,4 @@
-export interface Category {
+export interface Categories {
   id: number;
   pimCode: string;
   name: string;
@@ -9,13 +9,13 @@ export interface Category {
   seoDescription: string;
   secondDescription: string;
   breadcrumbs: string;
-  mainChildren: CategorySummary[];
-  extraChildren: CategorySummary[];
-  mainParent: CategorySummary | null;
-  extraParents: CategorySummary[];
+  mainChildren: CategoriesSummary[];
+  extraChildren: CategoriesSummary[];
+  mainParent: CategoriesSummary | null;
+  extraParents: CategoriesSummary[];
 }
 
-export interface CategorySummary {
+export interface CategoriesSummary {
   id: number;
   pimCode: string;
   name: string;

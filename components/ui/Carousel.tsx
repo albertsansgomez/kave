@@ -8,7 +8,7 @@ import { cn } from '@/utils/cn';
 
 import Arrow from '@/components/icons/Arrow.svg';
 
-export interface ProductCategory {
+export interface CarouselItem {
   name: string;
   image: string;
   alt: string;
@@ -17,7 +17,7 @@ export interface ProductCategory {
 
 interface CarouselProps {
   className?: string;
-  categories: ProductCategory[];
+  items: CarouselItem[];
 }
 
 /**
@@ -39,7 +39,7 @@ interface CarouselProps {
  * ya que el comportamiento requerido es
  * sencillo.
  */
-export default function Carousel({ categories, className }: CarouselProps) {
+export default function Carousel({ items, className }: CarouselProps) {
   const carouselRef = useRef<HTMLUListElement>(null);
 
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -157,19 +157,19 @@ export default function Carousel({ categories, className }: CarouselProps) {
         id="categories-items"
         className="scrollbar-none flex gap-2 overflow-x-auto px-6 lg:px-17 mt-2"
       >
-        {categories.map((category) => (
+        {items.map(({ name, image, alt, href }) => (
           <li
-            key={category.name}
+            key={name}
             className="w-[250px] min-w-[250px] shrink-0 lg:w-[calc((100vw-112px)/4.3)] lg:min-w-[calc((100vw-112px)/4.3)]"
           >
             <Link
-              href={category.href}
+              href={href}
               className="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
-                  src={category.image}
-                  alt={category.alt}
+                  src={image}
+                  alt={alt}
                   fill
                   sizes="(min-width: 1024px) 23vw, 50vw"
                   className="object-cover"
@@ -177,7 +177,7 @@ export default function Carousel({ categories, className }: CarouselProps) {
               </div>
 
               <p className="mt-4 font-kave-text text-base leading-[100%]">
-                {category.name}
+                {name}
               </p>
             </Link>
           </li>
