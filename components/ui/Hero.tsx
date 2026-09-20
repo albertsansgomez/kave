@@ -16,8 +16,8 @@ export default function Hero() {
         sizes="100vw"
       />
 
-      <div className="absolute w-full h-full bg-amber-500">
-        <div className="bg-red-600 absolute w-full bottom-0 left-0 pt-[33px] pr-4 pb-4 pl-6 lg:pt-8 lg:pr-[72px] lg:pb-10 lg:pl-[72px] flex flex-row justify-between items-end">
+      <div className="absolute w-full h-full">
+        <div className="absolute w-full bottom-0 left-0 pt-[33px] pr-4 pb-4 pl-6 lg:pt-8 lg:pr-[72px] lg:pb-10 lg:pl-[72px] flex flex-col gap-6 lg:gap-[120px] lg:flex-row items-start lg:justify-between lg:items-end">
           <div>
             <p className="font-normal text-[18px] font-martina-text text-white">
               New Collection
@@ -34,13 +34,13 @@ export default function Hero() {
           <div className="flex items-end gap-2 bg-green-600">
             <Link
               href="#"
-              className="text-center font-normal bg-white hover:bg-gray-400 hover:text-white pt-2 pr-5 pb-2 pl-5 h-10"
+              className="shrink-0 whitespace-nowrap text-center font-normal bg-white hover:bg-gray-400 hover:text-white pt-2 pr-5 pb-2 pl-5 h-10"
             >
               Ver editorial
             </Link>
             <Link
               href="#"
-              className="text-center font-normal bg-white hover:bg-gray-400 hover:text-white pt-2 pr-5 pb-2 pl-5 h-10"
+              className="shrink-0 whitespace-nowrap text-center font-normal bg-white hover:bg-gray-400 hover:text-white pt-2 pr-5 pb-2 pl-5 h-10"
             >
               Ver productos
             </Link>
