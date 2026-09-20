@@ -4,3 +4,16 @@
   --font-kave-text: var(--font-haffer-text);
   --font-martina-text: var(--font-martina-text);
 }
+
+/**
+ * Utilidad para ocultar la barra de 
+ * desplazamiento en el componente Carousel.
+ */
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
