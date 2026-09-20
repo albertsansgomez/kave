@@ -1,5 +1,9 @@
 import { Suspense } from 'react';
 
+import { type Category } from '@/types/category';
+
+import { getCategory } from '@/services/category';
+
 import PageIntro from '@/components/ui/PageIntro';
 import ProductList from '@/components/ui/ProductList';
 
@@ -20,11 +24,34 @@ export default async function CategoryPage({
   const { page } = await searchParams;
   const currentPage = Number(page) || 1;
 
+
+  let category: Category | null = null;
+  let hasError = false;
+
+  try {
+    category = await getCategory({ slug });
+
+  } catch (error) {
+    console.error('Failed to fetch products:', error);
+    hasError = true;
+  }
+
+
+  if (hasError || !category) {
+    return (
+      <section className="py-10 px-6 lg:py-[105px] lg:px-17">
+        <p>Error loading products</p>
+      </section>
+    );
+  }
+  
+  const { name, description } = category;
+
   return (
     <>
       <PageIntro
-        title="Mesas"
-        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        title={name}
+        description={description}
       />
       <Suspense fallback={<>Loading CategoryHome</>}>
         <ProductList currentPage={currentPage} />
