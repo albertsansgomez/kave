@@ -1,57 +1,9 @@
-import Link from 'next/link';
+import { Suspense } from 'react';
 
 import Hero from '@/components/ui/Hero';
 import Stories, { type StoryItem } from '@/components/ui/Stories';
-import Carousel, { type ProductCategory } from '@/components/ui/Carousel';
 
-/**
- * Listado de categorías de productos.
- */
-const categories: ProductCategory[] = [
-  {
-    name: 'Sofas',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Sofas',
-    href: '/sofa',
-  },
-  {
-    name: 'Tables',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Tables',
-    href: '/tables',
-  },
-  {
-    name: 'Chairs',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Chairs',
-    href: '/chairs',
-  },
-  {
-    name: 'TV stands',
-    image: 'https://picsum.photos/320/432',
-    alt: 'TV stands',
-    href: '/tv-stands',
-  },
-  {
-    name: 'Shelves and shelving units',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Shelves and shelving units',
-    href: '/shelves-and-shelving-units',
-  },
-  {
-    name: 'Decor and accessories',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Decor and accessories',
-    href: '/decor-and-accessories',
-  },
-  {
-    name: 'Soft furnishings',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Soft furnishings',
-    href: '/soft-furnishings',
-  },
-];
-
+import CarouselHome from '@/components/ui/CarouselHome';
 /**
  * Listado de historias destacadas.
  */
@@ -83,7 +35,10 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Carousel className="py-10 lg:py-[105px]" categories={categories} />
+       <Suspense fallback={<>Loading</>}>
+       
+      <CarouselHome />
+       </Suspense>
       <Stories stories={stories} />
     </>
   );
