@@ -2,8 +2,10 @@ import { Suspense } from 'react';
 
 import Hero from '@/components/ui/Hero';
 import Stories, { type StoryItem } from '@/components/ui/Stories';
-
 import CarouselHome from '@/components/ui/CarouselHome';
+import Pagination from '@/components/ui/Pagination';
+import Category from '@/components/ui/Category';
+
 /**
  * Listado de historias destacadas.
  */
@@ -38,6 +40,19 @@ export default function Home() {
       <Suspense fallback={<>Loading</>}>
         <CarouselHome />
       </Suspense>
+
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px] px-6 lg:px-17">
+        {Array.from({ length: 4 }, (_, index) => (
+          <Category key={index} />
+        ))}
+      </section>
+
+      <Pagination
+        className="mt-[60px] mb-[56px]"
+        currentPage={1}
+        totalPages={7}
+      />
+
       <Stories stories={stories} />
     </>
   );
