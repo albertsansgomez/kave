@@ -1,4 +1,4 @@
-import Arrow from '@/components/icons/Arrow.svg';
+import Chevron from '@/components/icons/Chevron.svg';
 
 interface DropDownOption {
   value: string;
@@ -26,7 +26,7 @@ export default function DropDown({ options }: DropDownProps) {
         aria-hidden="true"
         className="pointer-events-none absolute inset-y-0 right-0 flex w-[42px] items-center justify-center"
       >
-        <Arrow className="stroke-[#1A1A14] size-5 rotate-270" />
+        <Chevron className="stroke-[#1A1A14] size-5 rotate-270" />
       </span>
     </div>
   );
