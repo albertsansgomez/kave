@@ -2,10 +2,9 @@ import type { Response } from '@/types/response';
 import type { Categories } from '@/types/categories';
 
 import { getCategoriesMock } from '@/services/mock/categories';
-
 import { CATEGORIES_ENDPOINT } from '@/services/api/categories';
 
-const USE_MOCK = true;
+import { USE_MOCK } from '@/constants/mock';
 
 export async function getCategories(
   { page }: { page: number },
