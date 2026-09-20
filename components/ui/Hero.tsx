@@ -4,7 +4,7 @@ export default function Hero() {
   return (
     <section
       aria-labelledby="hero-title"
-      className="relative min-h-[calc(100vh-62px)] w-full"
+      className="relative min-h-[calc(100dvh-62px)] w-full"
     >
       <video
         autoPlay
