@@ -9,11 +9,17 @@ const nextConfig: NextConfig = {
       },
     },
   },
+
   images: {
     remotePatterns: [
       {
         protocol: 'https',
         hostname: 'picsum.photos',
+      },
+      {
+        protocol: 'https',
+        hostname: 'd.media.kavehome.com',
+        pathname: '/image/upload/**',
       },
     ],
   },
