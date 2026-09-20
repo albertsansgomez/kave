@@ -2,8 +2,9 @@ import { Suspense } from 'react';
 
 import Hero from '@/components/ui/Hero';
 import Stories, { type StoryItem } from '@/components/ui/Stories';
-
 import CarouselHome from '@/components/ui/CarouselHome';
+import CategoryHome from '@/components/ui/CategoryHome';
+
 /**
  * Listado de historias destacadas.
  */
@@ -35,9 +36,14 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Suspense fallback={<>Loading</>}>
+      <Suspense fallback={<>Loading CarouselHome</>}>
         <CarouselHome />
       </Suspense>
+
+      <Suspense fallback={<>Loading CategoryHome</>}>
+        <CategoryHome />
+      </Suspense>
+
       <Stories stories={stories} />
     </>
   );

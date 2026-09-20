@@ -1,24 +1,24 @@
-import type { Category } from '@/types/categories';
+import type { Categories } from '@/types/categories';
 
 import { getCategories } from '@/services/categories';
 
-import Carousel, { type ProductCategory } from '@/components/ui/Carousel';
+import Carousel, { type CarouselItem } from '@/components/ui/Carousel';
 
 /**
  * Transforma una categoría de producto en
  * el formato requerido por el componente de Carousel.
  */
-function mapCategoryToCarousel(category: Category): ProductCategory {
+function mapCategoryToCarousel(category: Categories): CarouselItem {
   return {
     name: category.name,
     image: category.highlightImage,
     alt: category.name,
-    href: `/categories/${category.slug}`,
+    href: `/category/${category.slug}`,
   };
 }
 
 export default async function CarouselHome() {
-  let categories: ProductCategory[] = [];
+  let categories: CarouselItem[] = [];
   let hasError = false;
 
   try {
@@ -37,5 +37,5 @@ export default async function CarouselHome() {
     );
   }
 
-  return <Carousel className="py-10 lg:py-[105px]" categories={categories} />;
+  return <Carousel className="py-10 lg:py-[105px]" items={categories} />;
 }

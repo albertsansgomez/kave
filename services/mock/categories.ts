@@ -1,9 +1,9 @@
-import type { Category } from '@/types/categories';
+import type { Categories } from '@/types/categories';
 import type { Response } from '@/types/response';
 
 const PAGE_SIZE = 20;
 
-const categories: Category[] = [
+const categories: Categories[] = [
   {
     id: 699,
     pimCode: 'chairs',
@@ -801,7 +801,7 @@ function getPageUrl(url: string, page: number): string {
 
 export async function getCategoriesMock(
   url: string,
-): Promise<Response<Category>> {
+): Promise<Response<Categories>> {
   await new Promise((resolve) => setTimeout(resolve, 3000));
 
   const page = getPage(url);
