@@ -1,4 +1,4 @@
-import ButtonHero from './ButtonHero';
+import ButtonLink from './ButtonLink';
 
 export default function Hero() {
   return (
@@ -33,8 +33,8 @@ export default function Hero() {
             </h1>
           </div>
           <div className="flex items-end gap-2">
-            <ButtonHero text="Ver editorial" href="#" />
-            <ButtonHero text="Ver productos" href="/products" />
+            <ButtonLink text="Ver editorial" href="#" />
+            <ButtonLink text="Ver productos" href="/products" />
           </div>
         </div>
       </div>
