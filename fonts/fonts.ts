@@ -19,7 +19,7 @@ export const kaveHafferText = localFont({
 export const martinaText = localFont({
   src: [
     {
-      path: './MartinaText-Regular.woff2',
+      path: './MartinaPlantijn-Regular.woff2',
       weight: '400',
       style: 'normal',
     },

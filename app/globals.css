@@ -1,6 +1,6 @@
 @import 'tailwindcss';
 
-@theme {
+@theme inline {
   --font-kave-text: var(--font-haffer-text);
   --font-martina-text: var(--font-martina-text);
 }
