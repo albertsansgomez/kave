@@ -1,10 +1,13 @@
 import Link from 'next/link';
+
 import Hero from '@/components/ui/Hero';
+import HomeStories from '@/components/ui/HomeStories';
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <HomeStories />
       <section>
         <ul>
           <li></li>
