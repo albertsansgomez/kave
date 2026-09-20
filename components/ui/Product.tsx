@@ -6,7 +6,7 @@ import type { Products } from '@/types/products';
 import WishlistLinkButton from './WishlistLinkButton';
 
 interface ProductProps {
-  product: Products ;
+  product: Products;
 }
 
 export default function Product({ product }: ProductProps) {

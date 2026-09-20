@@ -106,7 +106,6 @@ export default async function ProductPage({ params }: PageProps) {
                 </button>
               </li>
             ))}
-            
           </ul>
         </section>
         <section className="p-6 lg:p-12">
@@ -116,9 +115,7 @@ export default async function ProductPage({ params }: PageProps) {
           >
             {title}
           </h1>
-          <p className="font-normal text-[13px] leading-5">
-            {description}
-          </p>
+          <p className="font-normal text-[13px] leading-5">{description}</p>
           <p className="font-normal font-[670] text-[27px] leading-[27px] mt-4">
             {price} €
           </p>

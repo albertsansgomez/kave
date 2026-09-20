@@ -5,11 +5,7 @@ import { PRODUCT_ENDPOINT } from '@/services/api/product';
 
 import { USE_MOCK } from '@/constants/mock';
 
-export async function getProduct({
-  sku,
-}: {
-  sku: string;
-}): Promise<Product> {
+export async function getProduct({ sku }: { sku: string }): Promise<Product> {
   if (USE_MOCK) {
     return getProductMock();
   }
