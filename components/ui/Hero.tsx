@@ -1,5 +1,4 @@
-import Link from 'next/link';
-import Image from 'next/image';
+import ButtonHero from './ButtonHero';
 
 export default function Hero() {
   return (
@@ -34,18 +33,8 @@ export default function Hero() {
             </h1>
           </div>
           <div className="flex items-end gap-2">
-            <Link
-              href="#"
-              className="shrink-0 whitespace-nowrap text-center font-normal bg-white hover:bg-gray-400 hover:text-white pt-2 pr-5 pb-2 pl-5 h-10"
-            >
-              Ver editorial
-            </Link>
-            <Link
-              href="#"
-              className="shrink-0 whitespace-nowrap text-center font-normal bg-white hover:bg-gray-400 hover:text-white pt-2 pr-5 pb-2 pl-5 h-10"
-            >
-              Ver productos
-            </Link>
+            <ButtonHero text="Ver editorial" href="#" />
+            <ButtonHero text="Ver productos" href="/products" />
           </div>
         </div>
       </div>
