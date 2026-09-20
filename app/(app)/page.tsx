@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { Metadata } from 'next';
 
 import Hero from '@/components/ui/Hero';
 import Stories, { type StoryItem } from '@/components/ui/Stories';
@@ -37,6 +38,31 @@ interface PageProps {
   searchParams: Promise<{
     page?: string;
   }>;
+}
+
+/**
+ * Generación de metadatos para la página 
+ * de la home.
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const title = 'Kave — Here to Stay | Muebles de diseño para acompañarte toda la vida España';
+  const description = 'Muebles y decoración diseñados para durar y evolucionar contigo. Un hogar se hace poco a poco, con objetos que permanecen y vivencias que se acumulan.';
+
+  return {
+    title: title,
+    description: description,
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title: title,
+      description: description,
+      images: [
+        'https://d.media.kavehome.com/image/upload/v1759822730/web-general/OpenGraph%20images/here_to_stay_kave_home.jpg'
+      ],
+    },
+  };
 }
 
 export default async function Home({ searchParams }: PageProps) {
