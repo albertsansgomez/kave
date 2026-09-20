@@ -1,16 +1,26 @@
 import Arrow from '@/components/icons/Arrow.svg';
 
-export default function DropDown() {
+interface DropDownOption {
+  value: string;
+  label: string;
+}
+
+export interface DropDownProps {
+  options: DropDownOption[];
+}
+
+export default function DropDown({ options }: DropDownProps) {
   return (
     <div className="border border-[#A1A19B] relative inline-block w-24 h-12">
       <select
         name="quantity"
         className="h-full w-full appearance-none pl-4 pr-11 text-[13px] leading-none text-black outline-none"
       >
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
+        {options.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
       </select>
       <span
         aria-hidden="true"
