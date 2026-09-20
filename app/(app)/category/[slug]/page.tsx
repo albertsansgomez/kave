@@ -1,4 +1,5 @@
 import { Suspense } from 'react';
+import { Metadata } from 'next';
 
 import { type Category } from '@/types/category';
 
@@ -6,6 +7,49 @@ import { getCategory } from '@/services/category';
 
 import PageIntro from '@/components/ui/PageIntro';
 import ProductList from '@/components/ui/ProductList';
+
+/**
+ * Generación de metadatos para la página 
+ * de categoría.
+ */
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const category = await getCategory({ slug });
+
+  if (!category) {
+    return {};
+  }
+
+  const { seo, name } = category;
+
+  return {
+    title: seo.seoTitle || name,
+    description: seo.seoDescription,
+    alternates: {
+      canonical: seo.seoCanonical ?? undefined,
+      languages: Object.fromEntries(
+        seo.alternates
+          .filter((alternate) => alternate.hreflang)
+          .map((alternate) => [
+            alternate.hreflang,
+            alternate.href,
+          ]),
+      ),
+    },
+    robots: {
+      index: seo.index.includes('index'),
+      follow: seo.index.includes('follow'),
+    },
+    openGraph: {
+      title: seo.seoTitle || name,
+      description: seo.seoDescription,
+      images: category.openGraphImages,
+    },
+  };
+}
 
 interface PageProps {
   params: Promise<{
@@ -44,7 +88,7 @@ export default async function CategoryPage({
       </section>
     );
   }
-  
+
   const { name, description } = category;
 
   return (
