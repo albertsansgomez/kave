@@ -25,17 +25,19 @@ export default async function CategoryHome() {
     );
   }
 
-  return <>
-    <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
-      {categories.map((category) => (
-        <Category key={category.id} category={category} />
-      ))}
-    </section>
-    
-    <Pagination
-      className="mt-[60px] mb-[56px]"
-      currentPage={1}
-      totalPages={7}
-    />
-  </>;
+  return (
+    <>
+      <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
+        {categories.map((category) => (
+          <Category key={category.id} category={category} />
+        ))}
+      </section>
+
+      <Pagination
+        className="mt-[60px] mb-[56px]"
+        currentPage={1}
+        totalPages={7}
+      />
+    </>
+  );
 }

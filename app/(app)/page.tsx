@@ -36,10 +36,24 @@ export default function Home() {
   return (
     <>
       <Hero />
+
+      {/**
+       * El carrusel muestra inicialmente la primera
+       * página de categorías. No gestiona ningún tipo
+       * de paginación. Se limita únicamente el carrusel
+       * diseñado en el Figma suministrado.
+       */}
       <Suspense fallback={<>Loading CarouselHome</>}>
         <CarouselHome />
       </Suspense>
 
+      {/**
+       * La sección de categorías si gestiona la páginación.
+       * En el diseño proporcionado en el Figma no existe
+       * pero he agregado el listado con la paginación para
+       * permitir la navegación entre las diferentes páginas
+       * de categorías.
+       */}
       <Suspense fallback={<>Loading CategoryHome</>}>
         <CategoryHome />
       </Suspense>
