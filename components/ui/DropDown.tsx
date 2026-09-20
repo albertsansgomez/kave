@@ -11,7 +11,7 @@ export interface DropDownProps {
 
 export default function DropDown({ options }: DropDownProps) {
   return (
-    <div className="border border-[#A1A19B] relative inline-block w-24 h-12">
+    <div className="border border-[#A1A19B] relative inline-block w-24 h-12 focus-within:rounded-sm not-last-of-type:focus-within:border-black focus-within:outline-2 focus-within:outline-black focus-within:outline-offset-[-2px]">
       <select
         name="quantity"
         className="h-full w-full appearance-none pl-4 pr-11 text-[13px] leading-none text-black outline-none"
