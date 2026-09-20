@@ -5,7 +5,11 @@ import { getCategories } from '@/services/categories';
 import Pagination from '@/components/ui/Pagination';
 import Category from '@/components/ui/Category';
 
-export default async function CategoryHome() {
+interface CategoryHomeProps {
+  currentPage: number;
+}
+
+export default async function CategoryHome({ currentPage = 1 }: CategoryHomeProps) {
   let categories: Categories[] = [];
   let hasError = false;
 
@@ -35,7 +39,7 @@ export default async function CategoryHome() {
 
       <Pagination
         className="mt-[60px] mb-[56px]"
-        currentPage={1}
+        currentPage={currentPage}
         totalPages={7}
       />
     </>

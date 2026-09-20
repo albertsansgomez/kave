@@ -32,7 +32,16 @@ const stories: StoryItem[] = [
   },
 ];
 
-export default function Home() {
+interface PageProps {
+  searchParams: Promise<{
+    page?: string;
+  }>;
+}
+
+export default async function Home({ searchParams }: PageProps) {
+  const { page } = await searchParams;
+  const currentPage = Number(page) || 1;
+
   return (
     <>
       <Hero />
@@ -55,7 +64,7 @@ export default function Home() {
        * de categorías.
        */}
       <Suspense fallback={<>Loading CategoryHome</>}>
-        <CategoryHome />
+        <CategoryHome currentPage={currentPage} />
       </Suspense>
 
       <Stories stories={stories} />
