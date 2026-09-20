@@ -3,7 +3,7 @@ import type { Response } from '@/types/response';
 
 import { CATEGORIES_ENDPOINT } from '../api/categories';
 
-const PAGE_SIZE = 20;
+const PAGE_SIZE = 4;
 
 const categories: Categories[] = [
   {
