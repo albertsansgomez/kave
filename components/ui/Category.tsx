@@ -1,20 +1,26 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-export default function Category() {
+import type { Categories } from '@/types/categories';
+
+interface CategoryProps {
+  category: Categories
+}
+
+export default function Category({ category: { name, highlightImage, seoDescription } }: CategoryProps) {
   return (
-    <Link href="/product/tarsel-coffee-table-in-tempered-glass-with-walnut-veneer-tray-with-brushed-stainless-steel-structure">
+    <Link href={`/category/${name}`}>
       <article>
         <div className="relative aspect-[4/5] w-full">
           <Image
-            src="https://picsum.photos/375/300"
+            src={highlightImage}
             fill
-            alt="Lorem ipsum dolor sit amet"
+            alt={seoDescription}
             className="object-cover"
           />
         </div>
         <div className="flex flex-col gap-[6px] pt-2 pr-2 pl-2">
-          <h3 className="mt-4 font-kave-text text-base leading-[100%]">Artis</h3>
+          <h3 className="mt-4 font-kave-text text-base leading-[100%]">{name}</h3>
         </div>
       </article>
     </Link>
