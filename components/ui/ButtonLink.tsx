@@ -11,7 +11,7 @@ interface ButtonLinkProps {
 export default function ButtonLink({ text, href, className }: ButtonLinkProps) {
   const buttonClassName = cn(
     className,
-    'whitespace-nowrap text-center font-normal bg-white hover:bg-gray-400 hover:text-white pt-2 pr-5 pb-2 pl-5 h-10',
+    'h-10 whitespace-nowrap bg-white px-5 py-2 text-center text-[14px] hover:bg-gray-400 hover:text-white',
   );
 
   return (

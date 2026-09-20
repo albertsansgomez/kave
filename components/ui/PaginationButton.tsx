@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import Arrow from '@/components/icons/Arrow.svg';
+import Chevron from '@/components/icons/Chevron.svg';
 
 import { cn } from '@/utils/cn';
 
@@ -30,11 +30,11 @@ export default function PaginationButton({
 
   return enabled ? (
     <Link href={href} aria-label={ariaLabel} className={className}>
-      <Arrow className={classNameIcon} />
+      <Chevron className={classNameIcon} />
     </Link>
   ) : (
     <span aria-hidden="true" className={className}>
-      <Arrow className={classNameIcon} />
+      <Chevron className={classNameIcon} />
     </span>
   );
 }
