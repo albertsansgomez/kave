@@ -1,53 +1,21 @@
 'use client';
 
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-interface ProductCategory {
+export interface ProductCategory {
   name: string;
   image: string;
   alt: string;
+  href: string;
 }
 
-const categories: ProductCategory[] = [
-  {
-    name: 'Sofas',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Sofas',
-  },
-  {
-    name: 'Tables',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Tables',
-  },
-  {
-    name: 'Chairs',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Chairs',
-  },
-  {
-    name: 'TV stands',
-    image: 'https://picsum.photos/320/432',
-    alt: 'TV stands',
-  },
-  {
-    name: 'Shelves and shelving units',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Shelves and shelving units',
-  },
-  {
-    name: 'Decor and accessories',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Decor and accessories',
-  },
-  {
-    name: 'Soft furnishings',
-    image: 'https://picsum.photos/320/432',
-    alt: 'Soft furnishings',
-  },
-];
+interface CarouselProps {
+  categories: ProductCategory[];
+}
 
-export default function ProductCategoriesCarousel() {
+export default function Carousel({ categories }: CarouselProps) {
   const carouselRef = useRef<HTMLUListElement>(null);
 
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -141,19 +109,21 @@ export default function ProductCategoriesCarousel() {
             key={category.name}
             className="w-[250px] min-w-[250px] shrink-0 lg:w-[calc((100vw-112px)/4.3)] lg:min-w-[calc((100vw-112px)/4.3)]"
           >
-            <div className="relative aspect-[4/5] overflow-hidden">
-              <Image
-                src={category.image}
-                alt={category.alt}
-                fill
-                sizes="(min-width: 1024px) 23vw, 50vw"
-                className="object-cover"
-              />
-            </div>
+            <Link href={category.href}>
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <Image
+                  src={category.image}
+                  alt={category.alt}
+                  fill
+                  sizes="(min-width: 1024px) 23vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
 
-            <p className="mt-4 font-kave-text text-base leading-[100%]">
-              {category.name}
-            </p>
+              <p className="mt-4 font-kave-text text-base leading-[100%]">
+                {category.name}
+              </p>
+            </Link>
           </li>
         ))}
       </ul>
