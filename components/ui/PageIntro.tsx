@@ -1,6 +1,8 @@
+import { ReactNode } from 'react';
+
 interface PageIntroProps {
   title: string;
-  description: string;
+  description: string | ReactNode;
 }
 
 export default function PageIntro({ title, description }: PageIntroProps) {
