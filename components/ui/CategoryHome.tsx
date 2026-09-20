@@ -9,7 +9,9 @@ interface CategoryHomeProps {
   currentPage: number;
 }
 
-export default async function CategoryHome({ currentPage = 1 }: CategoryHomeProps) {
+export default async function CategoryHome({
+  currentPage = 1,
+}: CategoryHomeProps) {
   let categories: Categories[] = [];
   let hasError = false;
 

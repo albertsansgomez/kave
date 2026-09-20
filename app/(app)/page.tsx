@@ -4,6 +4,7 @@ import Hero from '@/components/ui/Hero';
 import Stories, { type StoryItem } from '@/components/ui/Stories';
 import CarouselHome from '@/components/ui/CarouselHome';
 import CategoryHome from '@/components/ui/CategoryHome';
+import PageIntro from '@/components/ui/PageIntro';
 
 /**
  * Listado de historias destacadas.
@@ -55,7 +56,28 @@ export default async function Home({ searchParams }: PageProps) {
       <Suspense fallback={<>Loading CarouselHome</>}>
         <CarouselHome />
       </Suspense>
-
+      <PageIntro
+        title="Listado de categorías"
+        description={
+          <div className="flex flex-col gap-5">
+            <p>
+              Explora todas las categorías disponibles a través de este listado
+              paginado.
+            </p>
+            <p>
+              Aunque esta navegación no aparece definida explícitamente en el
+              diseño original de la Home, se ha incorporado para facilitar el
+              acceso al catálogo completo de categorías, manteniendo la estética
+              y el look & feel de la propuesta visual.
+            </p>
+            <p>
+              El carrusel superior ofrece una primera selección visual, mientras
+              que este listado permite descubrir y navegar cómodamente por el
+              resto de categorías.
+            </p>
+          </div>
+        }
+      />
       {/**
        * La sección de categorías si gestiona la páginación.
        * En el diseño proporcionado en el Figma no existe
