@@ -1,8 +1,11 @@
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 import Shipping from '@/components/icons/Shipping.svg';
 import AddCard from '@/components/ui/AddCard';
 import ProductBenefits from '@/components/ui/ProductBenefits';
+import { Product } from '@/types/product';
+import { getProduct } from '@/services/product';
 
 interface PageProps {
   params: Promise<{
@@ -10,9 +13,63 @@ interface PageProps {
   }>;
 }
 
+/**
+ * Generación de metadatos para la página
+ * de categoría.
+ */
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+
+  const product = await getProduct({ sku: slug.split('-').pop() ?? '' });
+
+  if (!product) {
+    return {};
+  }
+
+  const { description } = product;
+
+  const title = `${product.title} | Kave Home`;
+
+  return {
+    title,
+    description: description,
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title,
+      description: description,
+      images: product?.mainImage?.url ? [product.mainImage.url] : [],
+    },
+  };
+}
+
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
   const sku = slug.split('-').pop();
+
+  let product: Product | null = null;
+  let hasError = false;
+
+  try {
+    product = await getProduct({ sku: sku ?? '' });
+  } catch (error) {
+    console.error('Failed to fetch product:', error);
+    hasError = true;
+  }
+
+  if (hasError || !product) {
+    return (
+      <section className="py-10 px-6 lg:py-[105px] lg:px-17">
+        <p>Error loading product</p>
+      </section>
+    );
+  }
+
+  const { title, description, price } = product;
 
   return (
     <>
@@ -25,7 +82,7 @@ export default async function ProductPage({ params }: PageProps) {
           aria-label="Galería de imágenes del producto"
         >
           <Image
-            src="https://picsum.photos/810/1017"
+            src={product?.mainImage?.url ?? '/images/no-image.png'}
             width={810}
             height={1017}
             className="h-auto w-full"
@@ -56,14 +113,13 @@ export default async function ProductPage({ params }: PageProps) {
             id="product-title"
             className="font-normal text-[46px] leading-[46px]"
           >
-            Artis {sku}
+            {title}
           </h1>
           <p className="font-normal text-[13px] leading-5">
-            Mesa extensible redonda Artis de madera maciza y chapa de roble FSC
-            100% 120 (170) x 80 cm
+            {description}
           </p>
           <p className="font-normal font-[670] text-[27px] leading-[27px] mt-4">
-            399 €
+            {price} €
           </p>
           <p className="mt-1 font-normal text-[12px] leading-[18px]">
             Fracciona tu pago en cómodas cuotas.{' '}
