@@ -35,10 +35,9 @@ export default function Home() {
   return (
     <>
       <Hero />
-       <Suspense fallback={<>Loading</>}>
-       
-      <CarouselHome />
-       </Suspense>
+      <Suspense fallback={<>Loading</>}>
+        <CarouselHome />
+      </Suspense>
       <Stories stories={stories} />
     </>
   );
