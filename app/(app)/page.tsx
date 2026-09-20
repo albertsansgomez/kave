@@ -1,17 +1,21 @@
 import Link from 'next/link';
+import Hero from '@/components/ui/Hero';
 
 export default function Home() {
   return (
-    <ul>
-      <li>
-        <Link href="/sillas">sillas</Link>
-      </li>
-      <li>
-        <Link href="/mesas">mesas</Link>
-      </li>
-      <li>
-        <Link href="/sofas">sofas</Link>
-      </li>
-    </ul>
+    <>
+      <Hero />
+      <section>
+        <ul>
+          <li></li>
+          <li>
+            <Link href="/mesas">mesas</Link>
+          </li>
+          <li>
+            <Link href="/sofas">sofas</Link>
+          </li>
+        </ul>
+      </section>
+    </>
   );
 }
