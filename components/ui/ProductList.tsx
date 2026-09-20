@@ -1,4 +1,4 @@
-import type { Product } from '@/types/product';
+import type { Products } from '@/types/products';
 
 import { getProducts } from '@/services/products';
 
@@ -11,7 +11,7 @@ interface ProductList {
 }
 
 export default async function ProductList({ currentPage = 1 }: ProductList) {
-  let products: Product[] = [];
+  let products: Products[] = [];
   let count = 0;
   let hasError = false;
 

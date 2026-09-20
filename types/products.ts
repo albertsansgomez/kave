@@ -1,4 +1,4 @@
-export interface Product {
+export interface Products {
   sku: string;
   title: string;
   description: string;
@@ -10,32 +10,23 @@ export interface Product {
   dimensionsImage: string | null;
   minUnitsToSell: number;
   images: ProductImage[];
-  mainImage: ProductImage;
-  documents: unknown[];
-  collection: string;
+  mainImage: ProductImage | null;
+  collection: string | null;
   categories: string[];
-  tags: string[];
+  tags: ProductTag[];
   isCustomisable: boolean;
   attributes: ProductAttributes;
-  brothers: {
-    sizes: unknown[];
-    colors: unknown[];
-  };
-  analyticsInfo: AnalyticsInfo;
+  brothers: ProductBrothers;
+  analyticsInfo: ProductAnalyticsInfo;
   isPremium: boolean;
   material: string | null;
   secondaryMaterial: string | null;
   materialHighlight: string | null;
   requiresMaintenance: boolean;
   teaserDescription: string;
-  teaserAssets: {
-    urlMobile: string | null;
-    urlDesktop: string | null;
-  };
-  storytellings: unknown[];
+  teaserAssets: ProductTeaserAssets;
   isTopHeavy: boolean;
   augmentedReality: unknown | null;
-  videos: unknown[];
   returnPolicy: string;
   bulletPoints: string[];
 }
@@ -43,8 +34,14 @@ export interface Product {
 export interface ProductImage {
   code: string;
   url: string;
-  type: 'V' | 'A' | 'D';
+  type: string;
   order: number;
+}
+
+export interface ProductTag {
+  label: string;
+  variant: string;
+  textStyle: string;
 }
 
 export interface ProductAttributes {
@@ -56,8 +53,8 @@ export interface ProductAttributes {
   edition: ProductAttribute<string | null>;
   descriptiveQuote: ProductAttribute<string | null>;
   descriptiveQuoteAuthor: ProductAttribute<string | null>;
-  unpackingSuggestions: ProductAttribute<string>;
-  structuredMaterials: ProductAttribute<string>;
+  unpackingSuggestions: ProductAttribute<string | null>;
+  structuredMaterials: ProductAttribute<string | null>;
 }
 
 export interface ProductAttribute<T> {
@@ -65,8 +62,18 @@ export interface ProductAttribute<T> {
   value: T;
 }
 
-export interface AnalyticsInfo {
+export interface ProductBrothers {
+  sizes: unknown[];
+  colors: unknown[];
+}
+
+export interface ProductAnalyticsInfo {
   effectivePrice: string;
   hasMatchMe: boolean;
   titleEn: string;
+}
+
+export interface ProductTeaserAssets {
+  urlMobile: string | null;
+  urlDesktop: string | null;
 }

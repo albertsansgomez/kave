@@ -1,11 +1,11 @@
 import type { Response } from '@/types/response';
-import type { Product } from '@/types/product';
+import type { Products } from '@/types/products';
 
 import { PRODUCTS_ENDPOINT } from '../api/products';
 
 const PAGE_SIZE = 8;
 
-const products: Product[] = [
+const products: Products[] = [
   {
     sku: 'D02479CR12',
     title: 'Ambientador en espray The Essence 200 ml',
@@ -2184,7 +2184,7 @@ const products: Product[] = [
 
 export async function getProductsMock(
   page: number,
-): Promise<Response<Product>> {
+): Promise<Response<Products>> {
   await new Promise((resolve) => setTimeout(resolve, 300));
 
   const start = (page - 1) * PAGE_SIZE;

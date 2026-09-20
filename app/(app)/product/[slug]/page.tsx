@@ -1,8 +1,11 @@
 import Image from 'next/image';
+import { Metadata } from 'next';
 
 import Shipping from '@/components/icons/Shipping.svg';
 import AddCard from '@/components/ui/AddCard';
 import ProductBenefits from '@/components/ui/ProductBenefits';
+import { Product } from '@/types/product';
+import { getProduct } from '@/services/product';
 
 interface PageProps {
   params: Promise<{
@@ -10,8 +13,64 @@ interface PageProps {
   }>;
 }
 
+/**
+ * Generación de metadatos para la página
+ * de categoría.
+ */
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const sku = slug.split('-').pop();
+
+  const product = await getProduct({ sku: sku ?? '' });
+
+  if (!product) {
+    return {};
+  }
+
+  const { description } = product;
+
+  const title = `${product.title} | Kave Home`;
+
+  return {
+    title,
+    description: description,
+    robots: {
+      index: true,
+      follow: true,
+    },
+    openGraph: {
+      title,
+      description: description,
+      images: product?.mainImage?.url ? [product.mainImage.url] : [],
+    },
+  };
+}
+
 export default async function ProductPage({ params }: PageProps) {
   const { slug } = await params;
+  const sku = slug.split('-').pop();
+
+  let product: Product | null = null;
+  let hasError = false;
+
+  try {
+    product = await getProduct({ sku: sku ?? '' });
+  } catch (error) {
+    console.error('Failed to fetch product:', error);
+    hasError = true;
+  }
+
+  if (hasError || !product) {
+    return (
+      <section className="py-10 px-6 lg:py-[105px] lg:px-17">
+        <p>Error loading product</p>
+      </section>
+    );
+  }
+
+  const { title, description, price, images } = product;
 
   return (
     <>
@@ -24,25 +83,25 @@ export default async function ProductPage({ params }: PageProps) {
           aria-label="Galería de imágenes del producto"
         >
           <Image
-            src="https://picsum.photos/810/1017"
+            src={product?.mainImage?.url ?? '/images/no-image.png'}
             width={810}
             height={1017}
             className="h-auto w-full"
-            alt="Lorem ipsum dolor sit amet"
+            alt={title}
           />
           <ul className="hidden lg:grid grid-cols-3 gap-1">
-            {Array.from({ length: 4 }, (_, index) => (
+            {images.map((image, index) => (
               <li key={index} className="min-w-0 bg-blue-600">
                 <button
                   type="button"
-                  aria-label="Ver imagen 1 de Artis"
+                  aria-label={`Ver imagen ${index + 1} de ${title}`}
                   className="block w-full"
                 >
                   <Image
-                    src="https://picsum.photos/206/258"
+                    src={image.url}
                     width={206}
                     height={258}
-                    alt="Lorem ipsum dolor sit amet"
+                    alt={`${title} - Imagen ${index + 1}`}
                     className="block h-auto w-full object-cover"
                   />
                 </button>
@@ -55,14 +114,11 @@ export default async function ProductPage({ params }: PageProps) {
             id="product-title"
             className="font-normal text-[46px] leading-[46px]"
           >
-            Artis
+            {title}
           </h1>
-          <p className="font-normal text-[13px] leading-5">
-            Mesa extensible redonda Artis de madera maciza y chapa de roble FSC
-            100% 120 (170) x 80 cm
-          </p>
+          <p className="font-normal text-[13px] leading-5">{description}</p>
           <p className="font-normal font-[670] text-[27px] leading-[27px] mt-4">
-            399 €
+            {price} €
           </p>
           <p className="mt-1 font-normal text-[12px] leading-[18px]">
             Fracciona tu pago en cómodas cuotas.{' '}

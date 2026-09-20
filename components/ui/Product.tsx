@@ -1,19 +1,19 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { Product } from '@/types/product';
+import type { Products } from '@/types/products';
 
 import WishlistLinkButton from './WishlistLinkButton';
 
 interface ProductProps {
-  product: Product;
+  product: Products;
 }
 
 export default function Product({ product }: ProductProps) {
-  const { title, description, price } = product;
+  const { title, description, price, slug, sku } = product;
 
   return (
-    <Link href="/product/tarsel-coffee-table-in-tempered-glass-with-walnut-veneer-tray-with-brushed-stainless-steel-structure">
+    <Link href={`/product/${slug}-${sku}`}>
       <article>
         <div className="relative aspect-[4/5] w-full">
           <Image

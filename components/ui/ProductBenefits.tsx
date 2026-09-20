@@ -17,7 +17,7 @@ export default function ProductBenefits({ className }: ProductBenefitsProps) {
           <h3 className="font-[670] text-[16px] leading-[24px]">
             Devoluciones gratuitas
           </h3>
-          <a href="/devoluciones" className="underline">
+          <a href="#" className="underline">
             Ver condiciones
           </a>
         </li>
@@ -26,7 +26,7 @@ export default function ProductBenefits({ className }: ProductBenefitsProps) {
           <h3 className="font-[670] text-[16px] leading-[24px]">
             Garantía 10 años
           </h3>
-          <a href="/devoluciones" className="underline">
+          <a href="#" className="underline">
             Ver condiciones
           </a>
         </li>
@@ -35,7 +35,7 @@ export default function ProductBenefits({ className }: ProductBenefitsProps) {
           <h3 className="font-[670] text-[16px] leading-[24px]">
             Más de 175 puntos de venta
           </h3>
-          <a href="/tiendas" className="underline">
+          <a href="#" className="underline">
             Ver tiendas
           </a>
         </li>
@@ -44,7 +44,7 @@ export default function ProductBenefits({ className }: ProductBenefitsProps) {
           <h3 className="font-[670] text-[16px] leading-[24px]">
             Financiación sin intereses
           </h3>
-          <a href="/financiacion" className="underline">
+          <a href="#" className="underline">
             Ver opciones
           </a>
         </li>

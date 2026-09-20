@@ -1,5 +1,5 @@
 import type { Response } from '@/types/response';
-import type { Product } from '@/types/product';
+import type { Products } from '@/types/products';
 
 import { getProductsMock } from '@/services/mock/products';
 import { PRODUCTS_ENDPOINT } from '@/services/api/products';
@@ -10,7 +10,7 @@ export async function getProducts({
   page,
 }: {
   page: number;
-}): Promise<Response<Product>> {
+}): Promise<Response<Products>> {
   if (USE_MOCK) {
     return getProductsMock(page);
   }
