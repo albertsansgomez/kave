@@ -83,7 +83,7 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <Carousel categories={categories} />
+      <Carousel className='py-10 lg:py-[105px]' categories={categories} />
       <Stories stories={stories} />
       <section>
         <ul>
