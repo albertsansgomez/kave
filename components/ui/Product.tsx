@@ -1,12 +1,12 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import type { Product } from '@/types/product';
+import type { Products } from '@/types/products';
 
 import WishlistLinkButton from './WishlistLinkButton';
 
 interface ProductProps {
-  product: Product;
+  product: Products ;
 }
 
 export default function Product({ product }: ProductProps) {
