@@ -87,6 +87,7 @@ export default async function CategoryPage({
 
   return (
     <>
+      <a id="products-list" />
       <PageIntro title={name} description={description} />
       <Suspense fallback={<>Loading CategoryHome</>}>
         <ProductList currentPage={currentPage} />
