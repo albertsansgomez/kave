@@ -18,8 +18,8 @@ export default async function CategoryHome({
   let hasError = false;
 
   try {
-    const response = await getCategories({page: currentPage});
-    
+    const response = await getCategories({ page: currentPage });
+
     categories = response.results;
     count = response.count;
   } catch (error) {
@@ -43,6 +43,7 @@ export default async function CategoryHome({
         ))}
       </section>
       <Pagination
+        anchorLink="#categories-list"
         className="mt-[60px] mb-[56px]"
         currentPage={currentPage}
         totalPages={Math.ceil(count / PAGINATION_COUNT)}

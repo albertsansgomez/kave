@@ -56,6 +56,7 @@ export default async function Home({ searchParams }: PageProps) {
       <Suspense fallback={<>Loading CarouselHome</>}>
         <CarouselHome />
       </Suspense>
+      <a id="categories-list" />
       <PageIntro
         title="Listado de categorías"
         description={

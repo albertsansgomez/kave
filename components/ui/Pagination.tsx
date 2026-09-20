@@ -26,6 +26,7 @@ const getPages = (currentPage: number, totalPages: number) => {
 };
 
 interface PaginationProps {
+  anchorLink?: string;
   className?: string;
   currentPage: number;
   totalPages: number;
@@ -43,6 +44,7 @@ interface PaginationProps {
  * en el diseño.
  */
 export default function Pagination({
+  anchorLink,
   className,
   currentPage,
   totalPages,
@@ -60,7 +62,7 @@ export default function Pagination({
       <ul className="flex items-center justify-center h-[88px]">
         <li>
           <PaginationButton
-            href={`?page=${currentPage - 1}`}
+            href={`?page=${currentPage - 1}${anchorLink ? anchorLink : ''}`}
             direction="left"
             ariaLabel="Página anterior"
             enabled={hasPrevious}
@@ -84,7 +86,7 @@ export default function Pagination({
           return (
             <li key={page}>
               <PaginationLink
-                href={`?page=${page}`}
+                href={`?page=${page}${anchorLink ? anchorLink : ''}`}
                 content={page}
                 isCurrent={isCurrent}
                 ariaLabel={isCurrent ? 'page' : undefined}
@@ -106,7 +108,7 @@ export default function Pagination({
 
         <li>
           <PaginationButton
-            href={`?page=${currentPage + 1}`}
+            href={`?page=${currentPage + 1}${anchorLink ? anchorLink : ''}`}
             direction="right"
             ariaLabel="Página siguiente"
             enabled={hasNext}

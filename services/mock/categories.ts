@@ -3,7 +3,7 @@ import type { Response } from '@/types/response';
 
 import { CATEGORIES_ENDPOINT } from '../api/categories';
 
-const PAGE_SIZE = 4;
+const PAGE_SIZE = 8;
 
 const categories: Categories[] = [
   {
@@ -790,7 +790,7 @@ const categories: Categories[] = [
 ];
 
 export async function getCategoriesMock(
-  page: number
+  page: number,
 ): Promise<Response<Categories>> {
   await new Promise((resolve) => setTimeout(resolve, 300));
 
@@ -802,8 +802,8 @@ export async function getCategoriesMock(
 
   return {
     count: categories.length,
-    next: page < totalPages ? (`${CATEGORIES_ENDPOINT}?page=${page + 1}`) : null,
-    previous: page > 1 ? (`${CATEGORIES_ENDPOINT}?page=${page - 1}`) : null,
+    next: page < totalPages ? `${CATEGORIES_ENDPOINT}?page=${page + 1}` : null,
+    previous: page > 1 ? `${CATEGORIES_ENDPOINT}?page=${page - 1}` : null,
     results,
   };
 }

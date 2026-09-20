@@ -6,9 +6,11 @@ import { CATEGORIES_ENDPOINT } from '@/services/api/categories';
 
 import { USE_MOCK } from '@/constants/mock';
 
-export async function getCategories(
-  { page }: { page: number },
-): Promise<Response<Categories>> {
+export async function getCategories({
+  page,
+}: {
+  page: number;
+}): Promise<Response<Categories>> {
   if (USE_MOCK) {
     return getCategoriesMock(page);
   }
