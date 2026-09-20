@@ -13,7 +13,7 @@ function mapCategoryToCarousel(category: Categories): CarouselItem {
     name: category.name,
     image: category.highlightImage,
     alt: category.name,
-    href: `/categories/${category.slug}`,
+    href: `/category/${category.slug}`,
   };
 }
 
