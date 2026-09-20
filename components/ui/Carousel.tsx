@@ -45,11 +45,7 @@ export default function Carousel({ categories, className }: CarouselProps) {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
-  const carouselClassName = cn(
-    className,
-    'fw-full overflow-hidden bg-white',
-  );
-
+  const carouselClassName = cn('w-full overflow-hidden bg-white', className);
 
   /**
    * Actualiza el estado de las flechas en
@@ -119,35 +115,46 @@ export default function Carousel({ categories, className }: CarouselProps) {
   }, []);
 
   return (
-    <section className={carouselClassName}>
+    <section aria-labelledby="carousel-title" className={carouselClassName}>
       <div className="flex items-center justify-between px-6 lg:px-17">
-        <h2 className="font-kave-heading text-[20px] tracking-[-5%] pt-5 pb-5">Todo para tu hogar</h2>
+        <h2
+          id="carousel-title"
+          className="font-kave-heading text-[20px] tracking-[-5%] pt-5 pb-5"
+        >
+          Todo para tu hogar
+        </h2>
 
         <div className="flex gap-6">
           <button
             type="button"
-            aria-label="Previous"
+            aria-controls="categories-items"
+            aria-label="Ver más elementos anteriores"
             disabled={!canScrollLeft}
+            className="cursor-pointer disabled:cursor-default disabled:opacity-30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             onClick={() => onClick('left')}
-            className="disabled:opacity-30"
           >
-            <Arrow className="stroke-black size-5" />
+            <Arrow aria-hidden="true" className="stroke-black size-5" />
           </button>
 
           <button
             type="button"
-            aria-label="Next"
+            aria-controls="categories-items"
+            aria-label="Ver más elementos siguientes"
             disabled={!canScrollRight}
+            className="cursor-pointer disabled:cursor-default disabled:opacity-30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             onClick={() => onClick('right')}
-            className="disabled:opacity-30"
           >
-            <Arrow className="stroke-black size-5 rotate-180" />
+            <Arrow
+              aria-hidden="true"
+              className="stroke-black size-5 rotate-180"
+            />
           </button>
         </div>
       </div>
 
       <ul
         ref={carouselRef}
+        id="categories-items"
         className="scrollbar-none flex gap-2 overflow-x-auto px-6 lg:px-17 mt-2"
       >
         {categories.map((category) => (
@@ -155,7 +162,10 @@ export default function Carousel({ categories, className }: CarouselProps) {
             key={category.name}
             className="w-[250px] min-w-[250px] shrink-0 lg:w-[calc((100vw-112px)/4.3)] lg:min-w-[calc((100vw-112px)/4.3)]"
           >
-            <Link href={category.href}>
+            <Link
+              href={category.href}
+              className="block focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+            >
               <div className="relative aspect-[4/5] overflow-hidden">
                 <Image
                   src={category.image}
