@@ -21,8 +21,9 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  const sku = slug.split('-').pop();
 
-  const product = await getProduct({ sku: slug.split('-').pop() ?? '' });
+  const product = await getProduct({ sku: sku ?? '' });
 
   if (!product) {
     return {};
