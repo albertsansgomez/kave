@@ -8,6 +8,15 @@ import { getCategory } from '@/services/category';
 import PageIntro from '@/components/ui/PageIntro';
 import ProductList from '@/components/ui/ProductList';
 
+interface PageProps {
+  params: Promise<{
+    slug: string;
+  }>;
+  searchParams: Promise<{
+    page?: string;
+  }>;
+}
+
 /**
  * Generación de metadatos para la página 
  * de categoría.
@@ -26,7 +35,7 @@ export async function generateMetadata({
   const { seo, name } = category;
 
   return {
-    title: seo.seoTitle || name,
+    title: `${seo.seoTitle || name} | Kave Home`,
     description: seo.seoDescription,
     alternates: {
       canonical: seo.seoCanonical ?? undefined,
@@ -49,15 +58,6 @@ export async function generateMetadata({
       images: category.openGraphImages,
     },
   };
-}
-
-interface PageProps {
-  params: Promise<{
-    slug: string;
-  }>;
-  searchParams: Promise<{
-    page?: string;
-  }>;
 }
 
 export default async function CategoryPage({
