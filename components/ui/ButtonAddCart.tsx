@@ -1,10 +1,10 @@
 import { cn } from '@/utils/cn';
 
-interface ButtonActionProps {
+interface ButtonAddCartProps {
   className?: string;
 }
 
-export default function ButtonAction({ className }: ButtonActionProps) {
+export default function ButtonAddCart({ className }: ButtonAddCartProps) {
   const buttonClassName = cn(
     className,
     'flex-1 bg-[#383831] hover:bg-[#97978a] px-6 py-3 text-white cursor-pointer',
