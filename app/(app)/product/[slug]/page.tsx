@@ -69,7 +69,7 @@ export default async function ProductPage({ params }: PageProps) {
     );
   }
 
-  const { title, description, price } = product;
+  const { title, description, price, images } = product;
 
   return (
     <>
@@ -86,26 +86,27 @@ export default async function ProductPage({ params }: PageProps) {
             width={810}
             height={1017}
             className="h-auto w-full"
-            alt="Lorem ipsum dolor sit amet"
+            alt={title}
           />
           <ul className="hidden lg:grid grid-cols-3 gap-1">
-            {Array.from({ length: 4 }, (_, index) => (
+            {images.map((image, index) => (
               <li key={index} className="min-w-0 bg-blue-600">
                 <button
                   type="button"
-                  aria-label="Ver imagen 1 de Artis"
+                  aria-label={`Ver imagen ${index + 1} de ${title}`}
                   className="block w-full"
                 >
                   <Image
-                    src="https://picsum.photos/206/258"
+                    src={image.url}
                     width={206}
                     height={258}
-                    alt="Lorem ipsum dolor sit amet"
+                    alt={`${title} - Imagen ${index + 1}`}
                     className="block h-auto w-full object-cover"
                   />
                 </button>
               </li>
             ))}
+            
           </ul>
         </section>
         <section className="p-6 lg:p-12">
