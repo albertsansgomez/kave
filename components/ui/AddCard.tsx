@@ -1,5 +1,5 @@
 import DropDown from '@/components/ui/DropDown';
-import ButtonAction from '@/components/ui/ButtonAction';
+import ButtonAddCart from '@/components/ui/ButtonAddCart';
 
 import { cn } from '@/utils/cn';
 
@@ -12,8 +12,15 @@ export default function AddCart({ className }: AddCartProps) {
 
   return (
     <div className={addClassName}>
-      <DropDown />
-      <ButtonAction className="flex-1" />
+      <DropDown
+        options={[
+          { value: '1', label: '1' },
+          { value: '2', label: '2' },
+          { value: '3', label: '3' },
+          { value: '4', label: '4' },
+        ]}
+      />
+      <ButtonAddCart className="flex-1" />
     </div>
   );
 }
