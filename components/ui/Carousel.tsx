@@ -21,6 +21,10 @@ export default function Carousel({ categories }: CarouselProps) {
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
 
+  /**
+   * Actualiza el estado de las flechas en
+   * función de la posición actual del scroll.
+   */
   const updateScrollState = () => {
     const carousel = carouselRef.current;
 
@@ -34,7 +38,7 @@ export default function Carousel({ categories }: CarouselProps) {
     setCanScrollRight(scrollLeft + clientWidth < scrollWidth - 1);
   };
 
-  const handleScroll = (direction: 'left' | 'right') => {
+  const onClick = (direction: 'left' | 'right') => {
     const carousel = carouselRef.current;
 
     if (!carousel) {
@@ -47,6 +51,10 @@ export default function Carousel({ categories }: CarouselProps) {
       return;
     }
 
+    /**
+     * Calculamos el desplezamiento por
+     * lo que ocupa el item del carrusel.
+     */
     const gap = 8;
     const amount = firstCard.getBoundingClientRect().width + gap;
 
@@ -56,6 +64,15 @@ export default function Carousel({ categories }: CarouselProps) {
     });
   };
 
+  /**
+   * Gestión del estado de desplazamiento
+   * del carrusel.
+   *
+   * Necesitamos conocer los desplazamientos
+   * realizados mediante swipe, trackpad o
+   * scroll manual, no solamente los realizados
+   * mediante las flechas.
+   */
   useEffect(() => {
     const carousel = carouselRef.current;
 
@@ -66,7 +83,6 @@ export default function Carousel({ categories }: CarouselProps) {
     updateScrollState();
 
     carousel.addEventListener('scroll', updateScrollState);
-
     return () => {
       carousel.removeEventListener('scroll', updateScrollState);
     };
@@ -82,7 +98,7 @@ export default function Carousel({ categories }: CarouselProps) {
             type="button"
             aria-label="Previous"
             disabled={!canScrollLeft}
-            onClick={() => handleScroll('left')}
+            onClick={() => onClick('left')}
             className="disabled:opacity-30"
           >
             ←
@@ -92,7 +108,7 @@ export default function Carousel({ categories }: CarouselProps) {
             type="button"
             aria-label="Next"
             disabled={!canScrollRight}
-            onClick={() => handleScroll('right')}
+            onClick={() => onClick('right')}
             className="disabled:opacity-30"
           >
             →
