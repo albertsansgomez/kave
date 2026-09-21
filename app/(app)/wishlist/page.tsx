@@ -14,11 +14,21 @@ export default function Wishlist() {
         title="Wishlist"
         description="Aquí vienen las piezas que te gustan."
       />
-      <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
-        {favorites.map((product, index) => (
-          <Product key={product.sku} priority={index <= 4} product={product} />
-        ))}
-      </section>
+      {favorites.length === 0 ? (
+        <p className="text-center text-[14px] mt-20">
+          No tienes productos en tu lista de deseos.
+        </p>
+      ) : (
+        <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
+          {favorites.map((product, index) => (
+            <Product
+              key={product.sku}
+              priority={index <= 4}
+              product={product}
+            />
+          ))}
+        </section>
+      )}
     </>
   );
 }

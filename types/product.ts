@@ -17,21 +17,15 @@ export interface Product {
   tags: string[];
   isCustomisable: boolean;
   attributes: ProductAttributes;
-  brothers: {
-    sizes: unknown[];
-    colors: unknown[];
-  };
-  analyticsInfo: AnalyticsInfo;
+  brothers: ProductBrothers;
+  analyticsInfo: ProductAnalyticsInfo;
   isPremium: boolean;
   material: string | null;
   secondaryMaterial: string | null;
   materialHighlight: string | null;
   requiresMaintenance: boolean;
   teaserDescription: string;
-  teaserAssets: {
-    urlMobile: string | null;
-    urlDesktop: string | null;
-  };
+  teaserAssets: ProductTeaserAssets;
   storytellings: unknown[];
   isTopHeavy: boolean;
   augmentedReality: unknown | null;
@@ -56,8 +50,8 @@ export interface ProductAttributes {
   edition: ProductAttribute<string | null>;
   descriptiveQuote: ProductAttribute<string | null>;
   descriptiveQuoteAuthor: ProductAttribute<string | null>;
-  unpackingSuggestions: ProductAttribute<string>;
-  structuredMaterials: ProductAttribute<string>;
+  unpackingSuggestions: ProductAttribute<string | null>;
+  structuredMaterials: ProductAttribute<string | null>;
 }
 
 export interface ProductAttribute<T> {
@@ -65,8 +59,18 @@ export interface ProductAttribute<T> {
   value: T;
 }
 
-export interface AnalyticsInfo {
+export interface ProductBrothers {
+  sizes: unknown[];
+  colors: unknown[];
+}
+
+export interface ProductAnalyticsInfo {
   effectivePrice: string;
   hasMatchMe: boolean;
   titleEn: string;
+}
+
+export interface ProductTeaserAssets {
+  urlMobile: string | null;
+  urlDesktop: string | null;
 }
