@@ -33,7 +33,10 @@ export default function WishlistLinkButton({
     },
   );
 
-  const onClick = () => {
+  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
     if (isActive) {
       removeFavorite(sku);
       return;
@@ -42,18 +45,16 @@ export default function WishlistLinkButton({
     addFavorite(product);
   };
 
-
-
   return (
     <button
       type="button"
-      aria-label="Agregar a la lista de deseados"
+      aria-label={
+        isActive
+          ? 'Eliminar de la lista de deseados'
+          : 'Agregar a la lista de deseados'
+      }
       className={heartClassName}
-      onClick={(event) => {
-        onClick();
-        event.preventDefault();
-        event.stopPropagation();
-      }}
+      onClick={onClick}
     >
       <Heart className="h-full w-full" />
     </button>
