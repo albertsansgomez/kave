@@ -37,17 +37,25 @@ export default async function CategoryHome({
 
   return (
     <>
-      <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
-        {categories.map((category) => (
-          <Category key={category.id} category={category} />
-        ))}
-      </section>
-      <Pagination
-        anchorLink="#categories-list"
-        className="mt-[60px] mb-[56px]"
-        currentPage={currentPage}
-        totalPages={Math.ceil(count / PAGINATION_COUNT)}
-      />
+      {categories.length === 0 ? (
+        <div className="flex flex-1 items-center justify-center py-20">
+          <p className="text-center text-[14px]">No existen categorías.</p>
+        </div>
+      ) : (
+        <>
+          <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
+            {categories.map((category) => (
+              <Category key={category.id} category={category} />
+            ))}
+          </section>
+          <Pagination
+            anchorLink="#categories-list"
+            className="mt-[60px] mb-[56px]"
+            currentPage={currentPage}
+            totalPages={Math.ceil(count / PAGINATION_COUNT)}
+          />
+        </>
+      )}
     </>
   );
 }

@@ -35,21 +35,29 @@ export default async function ProductList({ currentPage = 1 }: ProductList) {
 
   return (
     <>
-      <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
-        {products.map((product, index) => (
-          <ProductComponent
-            key={product.sku}
-            priority={index <= 4}
-            product={product}
+      {products.length === 0 ? (
+        <div className="flex flex-1 items-center justify-center">
+          <p className="text-center text-[14px]">No existen productos.</p>
+        </div>
+      ) : (
+        <>
+          <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
+            {products.map((product, index) => (
+              <ProductComponent
+                key={product.sku}
+                priority={index <= 4}
+                product={product}
+              />
+            ))}
+          </section>
+          <Pagination
+            anchorLink="#products-list"
+            className="mt-[60px] mb-[56px]"
+            currentPage={currentPage}
+            totalPages={Math.ceil(count / PAGINATION_COUNT)}
           />
-        ))}
-      </section>
-      <Pagination
-        anchorLink="#products-list"
-        className="mt-[60px] mb-[56px]"
-        currentPage={currentPage}
-        totalPages={Math.ceil(count / PAGINATION_COUNT)}
-      />
+        </>
+      )}
     </>
   );
 }

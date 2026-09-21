@@ -86,12 +86,12 @@ export default async function CategoryPage({
   const { name, description } = category;
 
   return (
-    <>
+    <div className="flex min-h-[calc(100dvh-64px)] flex-col">
       <a id="products-list" />
       <PageIntro title={name} description={description} />
       <Suspense fallback={<>Loading CategoryHome</>}>
         <ProductList currentPage={currentPage} />
       </Suspense>
-    </>
+    </div>
   );
 }
