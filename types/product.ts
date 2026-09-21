@@ -37,7 +37,7 @@ export interface Product {
 export interface ProductImage {
   code: string;
   url: string;
-  type: 'V' | 'A' | 'D';
+  type: 'V' | 'A' | 'C' | 'D';
   order: number;
 }
 
