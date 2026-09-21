@@ -64,3 +64,23 @@ La interfaz está diseñada para adaptarse a diferentes tamaños de pantalla, co
 ## 🌐 Despliegue
 
 El proyecto está preparado para su despliegue en **Vercel**.
+
+### 🏗️ Decisiones arquitectónicas adoptadas
+
+* **Next.js + App Router** como base de la aplicación, aprovechando su estructura de rutas y separación entre Server y Client Components.
+* **TypeScript** para mantener tipado y facilitar el mantenimiento del código.
+* **Componentización de la UI**, separando componentes reutilizables de presentación y componentes específicos de cada página.
+* **Context API** para gestionar el estado global de favoritos, evitando introducir una librería de gestión de estado innecesaria para esta funcionalidad.
+* **Mock de los endpoints** para poder desarrollar y validar la aplicación ante las restricciones de acceso del API real.
+* **Tailwind CSS** para la implementación de estilos de forma consistente y responsive.
+* **Diseño responsive y accesible**, utilizando HTML semántico, atributos ARIA cuando son necesarios y una estructura adaptada a diferentes tamaños de pantalla.
+* **Configuración de `next/image`** para optimizar la carga y gestión de imágenes procedentes del CDN.
+
+### 🤖 Uso de herramientas de IA
+
+Se han utilizado herramientas de IA como apoyo puntual para resolver dudas técnicas, revisar código, explorar alternativas de implementación y facilitar tareas de debugging. Todas las soluciones propuestas han sido revisadas y adaptadas durante el desarrollo.
+
+### 🤖 Uso de IA
+
+IA utilizada como herramienta de apoyo para consultas técnicas, revisión de código, debugging y exploración de alternativas de implementación.
+

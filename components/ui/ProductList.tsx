@@ -4,6 +4,8 @@ import { getProducts } from '@/services/products';
 
 import Pagination from '@/components/ui/Pagination';
 import ProductComponent from '@/components/ui/Product';
+import NoData from '@/components/ui/NoData';
+
 import { PAGINATION_COUNT } from '@/constants/pagination';
 
 interface ProductList {
@@ -35,21 +37,27 @@ export default async function ProductList({ currentPage = 1 }: ProductList) {
 
   return (
     <>
-      <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
-        {products.map((product, index) => (
-          <ProductComponent
-            key={product.sku}
-            priority={index <= 4}
-            product={product}
+      {products.length === 0 ? (
+        <NoData className="flex-1" message="No existen productos." />
+      ) : (
+        <>
+          <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
+            {products.map((product, index) => (
+              <ProductComponent
+                key={product.sku}
+                priority={index <= 4}
+                product={product}
+              />
+            ))}
+          </section>
+          <Pagination
+            anchorLink="#products-list"
+            className="mt-[60px] mb-[56px]"
+            currentPage={currentPage}
+            totalPages={Math.ceil(count / PAGINATION_COUNT)}
           />
-        ))}
-      </section>
-      <Pagination
-        anchorLink="#products-list"
-        className="mt-[60px] mb-[56px]"
-        currentPage={currentPage}
-        totalPages={Math.ceil(count / PAGINATION_COUNT)}
-      />
+        </>
+      )}
     </>
   );
 }
