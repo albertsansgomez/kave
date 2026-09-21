@@ -18,7 +18,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" data-scroll-behavior="smooth" className="scroll-smooth">
       <body
         className={`${poppins.className} ${kaveHafferText.variable} ${martinaText.variable} antialiased`}
       >
