@@ -68,7 +68,7 @@ export default async function CategoryPage({
   const currentPage = Number(page) || 1;
 
   let category: Category | null = null;
-  let hasError = true;
+  let hasError = false;
 
   try {
     category = await getCategory({ slug });
