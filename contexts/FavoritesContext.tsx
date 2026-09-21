@@ -3,8 +3,7 @@
 import {
   createContext,
   useContext,
-  useEffect,
-  useState,
+  useSyncExternalStore,
   type ReactNode,
 } from 'react';
 
@@ -23,46 +22,86 @@ const FavoritesContext = createContext<FavoritesContextValue | undefined>(
   undefined,
 );
 
-export function FavoritesProvider({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  const [favorites, setFavorites] = useState<FavoriteProduct[]>(() => {
-    if (typeof window === 'undefined') {
-      return [];
-    }
+/**
+ * Snapshot vacío estable.
+ *
+ * Es importante que sea una referencia constante porque
+ * useSyncExternalStore compara los snapshots por referencia.
+ */
+const EMPTY_FAVORITES: FavoriteProduct[] = [];
 
+let favoritesStore: FavoriteProduct[] | undefined;
+
+const listeners = new Set<() => void>();
+
+/**
+ * Obtiene el estado actual de favoritos en el cliente.
+ */
+function getFavoritesSnapshot(): FavoriteProduct[] {
+  if (favoritesStore === undefined) {
     const storedFavorites = localStorage.getItem(STORAGE_KEY);
 
-    return storedFavorites ? JSON.parse(storedFavorites) : [];
-  });
+    favoritesStore = storedFavorites
+      ? JSON.parse(storedFavorites)
+      : EMPTY_FAVORITES;
+  }
 
-  useEffect(() => {
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(favorites),
-    );
-  }, [favorites]);
+  return favoritesStore ?? EMPTY_FAVORITES;
+}
+
+/**
+ * Snapshot utilizado durante SSR.
+ *
+ * Debe devolver siempre la misma referencia.
+ */
+function getServerSnapshot(): FavoriteProduct[] {
+  return EMPTY_FAVORITES;
+}
+
+/**
+ * Se suscribe a los cambios del store.
+ */
+function subscribe(listener: () => void) {
+  listeners.add(listener);
+
+  return () => {
+    listeners.delete(listener);
+  };
+}
+
+/**
+ * Actualiza el store y persiste los favoritos.
+ */
+function updateFavorites(favorites: FavoriteProduct[]) {
+  favoritesStore = favorites;
+
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(favorites));
+
+  listeners.forEach((listener) => listener());
+}
+
+export function FavoritesProvider({ children }: { children: ReactNode }) {
+  const favorites = useSyncExternalStore(
+    subscribe,
+    getFavoritesSnapshot,
+    getServerSnapshot,
+  );
 
   const addFavorite = (product: FavoriteProduct) => {
-    setFavorites((currentFavorites) => {
-      if (currentFavorites.some((favorite) => favorite.sku === product.sku)) {
-        return currentFavorites;
-      }
+    if (favorites.some((favorite) => favorite.sku === product.sku)) {
+      return;
+    }
 
-      return [...currentFavorites, product];
-    });
+    updateFavorites([...favorites, product]);
   };
 
   const removeFavorite = (sku: string) => {
-    setFavorites((currentFavorites) =>
-      currentFavorites.filter((favorite) => favorite.sku !== sku),
-    );
+    updateFavorites(favorites.filter((favorite) => favorite.sku !== sku));
   };
 
-  const isFavorite = (sku: string) =>
-    favorites.some((favorite) => favorite.sku === sku);
+  const isFavorite = (sku: string) => {
+    return favorites.some((favorite) => favorite.sku === sku);
+  };
 
   return (
     <FavoritesContext.Provider
