@@ -1,7 +1,7 @@
 import { cn } from '@/utils/cn';
 
 interface NoDataProps {
-  className?: string;
+  className: string;
   message?: string;
 }
 

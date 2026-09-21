@@ -7,6 +7,8 @@ import { getCategory } from '@/services/category';
 
 import PageIntro from '@/components/ui/PageIntro';
 import ProductList from '@/components/ui/ProductList';
+import Loading from '@/components/ui/Loading';
+import ErrorData from '@/components/ui/ErrorData';
 
 interface PageProps {
   params: Promise<{
@@ -66,7 +68,7 @@ export default async function CategoryPage({
   const currentPage = Number(page) || 1;
 
   let category: Category | null = null;
-  let hasError = false;
+  let hasError = true;
 
   try {
     category = await getCategory({ slug });
@@ -76,11 +78,7 @@ export default async function CategoryPage({
   }
 
   if (hasError || !category) {
-    return (
-      <section className="py-10 px-6 lg:py-[105px] lg:px-17">
-        <p>Error loading products</p>
-      </section>
-    );
+    return <ErrorData message="Error al cargar categoría" />;
   }
 
   const { name, description } = category;
@@ -89,7 +87,7 @@ export default async function CategoryPage({
     <div className="flex min-h-[calc(100dvh-64px)] flex-col">
       <a id="products-list" />
       <PageIntro title={name} description={description} />
-      <Suspense fallback={<>Loading CategoryHome</>}>
+      <Suspense fallback={<Loading className="flex-1" />}>
         <ProductList currentPage={currentPage} />
       </Suspense>
     </div>

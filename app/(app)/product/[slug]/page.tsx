@@ -1,11 +1,14 @@
 import Image from 'next/image';
 import { Metadata } from 'next';
 
+import { Product } from '@/types/product';
+
+import { getProduct } from '@/services/product';
+
+import ErrorData from '@/components/ui/ErrorData';
 import Shipping from '@/components/icons/Shipping.svg';
 import AddCard from '@/components/ui/AddCard';
 import ProductBenefits from '@/components/ui/ProductBenefits';
-import { Product } from '@/types/product';
-import { getProduct } from '@/services/product';
 
 interface PageProps {
   params: Promise<{
@@ -63,11 +66,7 @@ export default async function ProductPage({ params }: PageProps) {
   }
 
   if (hasError || !product) {
-    return (
-      <section className="py-10 px-6 lg:py-[105px] lg:px-17">
-        <p>Error loading product</p>
-      </section>
-    );
+    return <ErrorData message="Error al cargar producto" />;
   }
 
   const { title, description, price, images } = product;
