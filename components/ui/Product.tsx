@@ -2,15 +2,26 @@ import Image from 'next/image';
 import Link from 'next/link';
 
 import type { Products } from '@/types/products';
+import type { FavoriteProduct } from '@/types/favorites';
 
 import WishlistLinkButton from './WishlistLinkButton';
 
 interface ProductProps {
-  product: Products;
+  product: Products | FavoriteProduct;
+  priority?: boolean;
 }
 
-export default function Product({ product }: ProductProps) {
+export default function Product({ product, priority = false }: ProductProps) {
   const { title, description, price, slug, sku } = product;
+
+  const favoriteProduct: FavoriteProduct = {
+    sku,
+    title,
+    slug,
+    price,
+    description,
+    mainImage: product.mainImage,
+  };
 
   return (
     <Link href={`/product/${slug}-${sku}`}>
@@ -20,11 +31,13 @@ export default function Product({ product }: ProductProps) {
             src={product?.mainImage?.url ?? '/images/no-image.png'}
             fill
             alt={description}
+            sizes="(max-width: 768px) 50vw, 33.33vw"
+            priority={priority}
             className="object-cover"
           />
           <WishlistLinkButton
             className="absolute top-3 right-3 z-10"
-            isActive={true}
+            product={favoriteProduct}
           />
         </div>
         <div className="flex flex-col gap-[6px] pt-2 pr-2 pl-2">

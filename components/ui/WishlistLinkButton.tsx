@@ -1,18 +1,27 @@
 'use client';
 
+import type { FavoriteProduct } from '@/types/favorites';
+
+import { useFavorites } from '@/contexts/FavoritesContext';
 import { cn } from '@/utils/cn';
 
 import Heart from '@/components/icons/Heart.svg';
 
 interface WishlistLinkButtonProps {
-  isActive: boolean;
+  product: FavoriteProduct;
   className?: string;
 }
 
 export default function WishlistLinkButton({
-  isActive,
+  product,
   className,
 }: WishlistLinkButtonProps) {
+  const { sku } = product;
+
+  const { addFavorite, removeFavorite, isFavorite } = useFavorites();
+
+  const isActive = isFavorite(sku);
+
   const heartClassName = cn(
     className,
     'h-6 w-6 cursor-pointer transition-colors',
@@ -24,15 +33,28 @@ export default function WishlistLinkButton({
     },
   );
 
+  const onClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (isActive) {
+      removeFavorite(sku);
+      return;
+    }
+
+    addFavorite(product);
+  };
+
   return (
     <button
       type="button"
-      aria-label="Agregar a la lista de deseados"
+      aria-label={
+        isActive
+          ? 'Eliminar de la lista de deseados'
+          : 'Agregar a la lista de deseados'
+      }
       className={heartClassName}
-      onClick={(event) => {
-        event.preventDefault();
-        event.stopPropagation();
-      }}
+      onClick={onClick}
     >
       <Heart className="h-full w-full" />
     </button>

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 
+import { FavoritesProvider } from '@/contexts/FavoritesContext';
+
 import './globals.css';
 import { kaveHafferText, martinaText } from '@/fonts/fonts';
 
@@ -16,11 +18,11 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<'/'>) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" data-scroll-behavior="smooth" className="scroll-smooth">
       <body
         className={`${poppins.className} ${kaveHafferText.variable} ${martinaText.variable} antialiased`}
       >
-        {children}
+        <FavoritesProvider>{children}</FavoritesProvider>
       </body>
     </html>
   );
