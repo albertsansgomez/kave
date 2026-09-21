@@ -4,6 +4,8 @@ import { getCategories } from '@/services/categories';
 
 import Pagination from '@/components/ui/Pagination';
 import Category from '@/components/ui/Category';
+import NoData from '@/components/ui/NoData';
+
 import { PAGINATION_COUNT } from '@/constants/pagination';
 
 interface CategoryHomeProps {
@@ -38,9 +40,7 @@ export default async function CategoryHome({
   return (
     <>
       {categories.length === 0 ? (
-        <div className="flex flex-1 items-center justify-center py-20">
-          <p className="text-center text-[14px]">No existen categorías.</p>
-        </div>
+        <NoData className="py-20" message="No existen categorías." />
       ) : (
         <>
           <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">

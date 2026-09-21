@@ -4,6 +4,7 @@ import { useFavorites } from '@/contexts/FavoritesContext';
 
 import PageIntro from '@/components/ui/PageIntro';
 import Product from '@/components/ui/Product';
+import NoData from '@/components/ui/NoData';
 
 export default function Wishlist() {
   const { favorites } = useFavorites();
@@ -15,11 +16,10 @@ export default function Wishlist() {
         description="Aquí vienen las piezas que te gustan."
       />
       {favorites.length === 0 ? (
-        <div className="flex flex-1 items-center justify-center">
-          <p className="text-center text-[14px]">
-            No tienes productos en tu lista de deseos.
-          </p>
-        </div>
+        <NoData
+          className="flex-1"
+          message="No tienes productos en tu lista de deseos."
+        />
       ) : (
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
           {favorites.map((product, index) => (
