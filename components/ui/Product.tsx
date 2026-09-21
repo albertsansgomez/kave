@@ -8,9 +8,10 @@ import WishlistLinkButton from './WishlistLinkButton';
 
 interface ProductProps {
   product: Products;
+  priority?: boolean;
 }
 
-export default function Product({ product }: ProductProps) {
+export default function Product({ product, priority = false }: ProductProps) {
   const { title, description, price, slug, sku } = product;
 
   const favoriteProduct: FavoriteProduct = {
@@ -30,6 +31,7 @@ export default function Product({ product }: ProductProps) {
             fill
             alt={description}
             sizes="(max-width: 768px) 50vw, 33.33vw"
+            priority={priority}
             className="object-cover"
           />
           <WishlistLinkButton

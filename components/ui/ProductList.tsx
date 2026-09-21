@@ -36,8 +36,12 @@ export default async function ProductList({ currentPage = 1 }: ProductList) {
   return (
     <>
       <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
-        {products.map((product) => (
-          <ProductComponent key={product.sku} product={product} />
+        {products.map((product, index) => (
+          <ProductComponent
+            key={product.sku}
+            priority={index <= 4}
+            product={product}
+          />
         ))}
       </section>
       <Pagination
