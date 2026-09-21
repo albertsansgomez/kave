@@ -2,5 +2,5 @@ import type { Products } from './products';
 
 export type FavoriteProduct = Pick<
   Products,
-  'sku' | 'title' | 'slug' | 'price' | 'mainImage'
+  'sku' | 'title' | 'description' | 'slug' | 'price' | 'mainImage'
 >;
