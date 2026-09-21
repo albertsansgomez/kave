@@ -29,6 +29,7 @@ export default function Product({ product }: ProductProps) {
             src={product?.mainImage?.url ?? '/images/no-image.png'}
             fill
             alt={description}
+            sizes="(max-width: 768px) 50vw, 33.33vw"
             className="object-cover"
           />
           <WishlistLinkButton

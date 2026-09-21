@@ -18,6 +18,7 @@ export default function Category({
             src={highlightImage}
             fill
             alt={seoDescription}
+            sizes="(max-width: 768px) 50vw, 33.33vw"
             className="object-cover"
           />
         </div>
