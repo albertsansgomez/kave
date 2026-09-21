@@ -21,11 +21,14 @@ export default function Wishlist() {
       ) : (
         <section className="grid grid-cols-2 lg:grid-cols-4 gap-x-1 gap-y-[37px] lg:gap-x-2 lg:gap-y-[60px]">
           {favorites.map((product, index) => (
-            <Product key={product.sku} priority={index <= 4} product={product} />
+            <Product
+              key={product.sku}
+              priority={index <= 4}
+              product={product}
+            />
           ))}
         </section>
       )}
-
     </>
   );
 }
