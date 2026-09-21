@@ -22,9 +22,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
       <body
         className={`${poppins.className} ${kaveHafferText.variable} ${martinaText.variable} antialiased`}
       >
-        <FavoritesProvider>
-          {children}
-        </FavoritesProvider>
+        <FavoritesProvider>{children}</FavoritesProvider>
       </body>
     </html>
   );
