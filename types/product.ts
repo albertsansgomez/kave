@@ -50,8 +50,8 @@ export interface ProductAttributes {
   edition: ProductAttribute<string | null>;
   descriptiveQuote: ProductAttribute<string | null>;
   descriptiveQuoteAuthor: ProductAttribute<string | null>;
-  unpackingSuggestions: ProductAttribute<string>;
-  structuredMaterials: ProductAttribute<string>;
+  unpackingSuggestions: ProductAttribute<string | null>;
+  structuredMaterials: ProductAttribute<string | null>;
 }
 
 export interface ProductAttribute<T> {
