@@ -1,6 +1,6 @@
 export interface Category {
   id: number;
-  pimCode: string;
+  pimCode: string | null;
   name: string;
   description: string;
   depth: number;
@@ -49,7 +49,7 @@ export interface CategoryAlgolia {
 
 export interface CategoryChild {
   id: number;
-  pimCode: string;
+  pimCode: string | null;
   name: string;
   url: string;
   slug: string;

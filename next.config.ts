@@ -19,7 +19,6 @@ const nextConfig: NextConfig = {
       {
         protocol: 'https',
         hostname: 'd.media.kavehome.com',
-        pathname: '/image/upload/**',
       },
     ],
   },
