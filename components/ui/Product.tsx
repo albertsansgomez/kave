@@ -7,7 +7,7 @@ import type { FavoriteProduct } from '@/types/favorites';
 import WishlistLinkButton from './WishlistLinkButton';
 
 interface ProductProps {
-  product: Products;
+  product: Products | FavoriteProduct;
   priority?: boolean;
 }
 
@@ -19,6 +19,7 @@ export default function Product({ product, priority = false }: ProductProps) {
     title,
     slug,
     price,
+    description,
     mainImage: product.mainImage,
   };
 
