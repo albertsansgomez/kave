@@ -17,6 +17,8 @@ export type Products = Omit<
   tags: ProductTag[];
   documents: unknown[];
   material: ProductMaterial | null;
+  storytellings: unknown[];
+  videos: unknown[];
 };
 
 export interface ProductTag {
