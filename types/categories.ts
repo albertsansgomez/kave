@@ -1,4 +1,4 @@
-import type { CategoryChild, Category } from "./category";
+import type { CategoryChild, Category } from './category';
 
 export type CategorySummary = Pick<
   CategoryChild,
